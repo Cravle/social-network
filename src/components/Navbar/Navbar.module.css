@@ -1,20 +1,22 @@
 .item {
-    padding-left: 20px;
-    width: 100px;
+
+    width: 120px;
     cursor: pointer;
 
 }
 
-.item:hover {
-    background-color: #333336;
-}
+/*.item:hover {*/
+/*    background-color: #333336;*/
+/*}*/
 
 .item:last-child {
+    padding-bottom: 5px;
     border-bottom: 1px solid #333336;
 }
 
-.active {
-    background-color: #333336;
+.activeLink {
+    color: #ffffff;
+    /*background-color: #333336;*/
 }
 
 .nav {
@@ -27,8 +29,20 @@
 }
 
 .nav a {
+    display: block;
+    width: 100px;
+    padding-left: 20px;
     text-decoration: none;
     color: #7a7a7b;
-    width: 40px;
+
     transition: hover .1s linear;
 }
+
+.nav a:hover{
+    background-color: #333336;
+}
+
+.nav a.activeLink{
+    background-color: #333336;
+}
+
