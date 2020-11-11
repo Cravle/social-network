@@ -1,10 +1,21 @@
 .header {
-    display: grid;
+    position: absolute;
+    display: block;
+    width: 100%;
+    left: 0;
     grid-area: h;
     background-color: #333336;
+
+    border-radius: 3px;
+}
+
+.imgWrapper {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .header img {
+    margin-top: 2px;
     align-self: center;
     padding-left: 45px;
     width: 40px;

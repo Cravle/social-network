@@ -1,0 +1,58 @@
+.myPage {
+    margin-bottom: 20px;
+}
+
+.content {
+    grid-area: c;
+    background-color: #222226;
+}
+
+.shapka {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.shapka img {
+    height: 200px;
+    width: 1000px;
+}
+
+.info {
+    display: grid;
+    grid-template-columns: 2fr 8fr;
+    max-width: 1000px;
+}
+
+.ava__wrapper {
+    display: grid;
+
+    width: 180px;
+    height: 180px;
+    background: #333336;
+
+}
+
+.ava {
+    color: #7a7a7b;
+}
+
+.ava img {
+    height: 160px;
+    width: 160px;
+    align-self: center;
+    justify-self: center;
+
+}
+
+.item {
+    color: #7a7a7b;
+}
+
+.description {
+    color: #fff;
+    display: block;
+
+    background: #333336;
+    padding: 10px;
+}
+
