@@ -1,3 +1,5 @@
+import {rerenderEntireTree} from "../render";
+
 let state = {
     profilePage: {
         posts: [
@@ -5,7 +7,7 @@ let state = {
             {id: 2, message: 'It\'s my first post', likesCount: 44},
             {id: 3, message: 'It\'s my first post', likesCount: 55},
         ],
-
+        newPostText: "Type your thoughts..."
     },
     dialogsPage: {
         dialogs:
@@ -54,6 +56,7 @@ let state = {
                 avaUrl: 'https://sun1-19.userapi.com/c846417/v846417031/17ee5a/kuSfbkTPN7A.jpg',
             },
         ],
+        newMessage: "Write a message"
 
     },
 
@@ -73,15 +76,36 @@ let state = {
     }
 }
 
-export let addPost = (postMessage) => {
-    
+window.state = state;
+
+export let addPost = () => {
+
     let newPost = {
         id: 5,
-        message: postMessage,
+        message: state.profilePage.newPostText,
         likesCount: 0,
     };
 
     state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText = '';
+
+    rerenderEntireTree(state);
+}
+
+export let addMessage = () => {
+    let newMessage = {
+        id: 5,
+        message: state.dialogsPage.newMessage,
+        avaUr: 'https://otvet.imgsmail.ru/download/201890154_cc41733ab1966f78f7c3923f8988db3e_800.jpg',
+    }
+
+    state.profilePage.posts.push(newMessage);
+    state.dialogsPage.newMessage = '';
+}
+
+export let updateNewPostText = (postMessage) => {
+    state.profilePage.newPostText = postMessage;
+    rerenderEntireTree(state);
 }
 
 export default state;

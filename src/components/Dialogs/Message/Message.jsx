@@ -9,6 +9,7 @@ const Message = (props) => {
             <img className={s.ava} src={props.avaUrl} alt="$"/>
             <div>
                 <div className={s.name}>Name</div>
+                
                 <div className={s.message}>{props.message}</div>
             </div>
         </div>
