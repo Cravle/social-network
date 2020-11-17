@@ -1,8 +1,11 @@
-.item {
+.wrapper {
     color: #7a7a7b;
+    display: grid;
+    margin-top: 15px;
+    grid-template-columns: 60px 10fr;
 }
 
-.item img {
+.wrapper img {
     width: 50px;
     height: 50px;
     border-radius: 50%;

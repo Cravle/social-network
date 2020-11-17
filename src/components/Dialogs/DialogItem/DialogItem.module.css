@@ -1,0 +1,36 @@
+.ava {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 70px 200px;
+    grid-template-rows:  2fr;
+}
+
+
+.dialogMessage {
+    color: #7a7a7b;
+}
+
+.dialogName {
+    margin-bottom: 10px;
+}
+
+.dialog {
+    padding: 10px;
+    display: block;
+    width: 250px;
+    color: #ffffff;
+
+    text-decoration: none;
+}
+
+.dialog.active {
+    background-color: #333336;
+}
+
+

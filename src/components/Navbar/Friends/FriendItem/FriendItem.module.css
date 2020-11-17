@@ -1,0 +1,18 @@
+a.wrapper {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 60px 60px;
+
+}
+
+
+.img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+
+}
+
+.name {
+
+}

@@ -5,26 +5,69 @@
 }
 
 .dialogsItems {
-
+    margin-right: 5px;
 }
 
-.dialog {
-    padding: 10px;
-    display: block;
-    width: 150px;
-    color: #ffffff;
-
-    text-decoration: none;
-}
-
-.dialog.active {
+.messagesWrapper {
     background-color: #333336;
 }
 
-.messages {
-    padding: 10px;
+
+.areaWrapper {
+    width: 720px;
+    display: grid;
+    grid-template-columns: 675px 30px;
+    height: 56px;
+    background: #444446;
+    padding-left: 10px;
+    position: relative;
 }
 
-.message {
-    color: #7a7a7b;
+.textarea {
+
+    align-self: center;
+    resize: none;
+    width: 650px;
+    height: 20px;
+    color: #fff;
+    background-color: transparent;
+    border-radius: 10px;
+    padding: 10px
 }
+
+.textarea:hover, .textarea:focus {
+    outline: none;
+    border-color: #666666;
+    border-radius: 10px;
+}
+
+
+.button {
+
+    cursor: pointer;
+    outline: none;
+    background: none;
+    border: none;
+    display: block;
+    width: 30px;
+    height: 30px;
+    align-self: center;
+}
+
+.button:hover, .button:focus {
+    padding-bottom: 5px;
+}
+
+
+.sendImg {
+    width: 30px;
+    height: 30px;
+
+}
+
+.sendImg:hover, .sendImg:focus {
+
+
+}
+
+

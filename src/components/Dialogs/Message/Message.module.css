@@ -1,0 +1,28 @@
+.messages {
+    padding: 10px;
+}
+
+.messageWrapper {
+    display: grid;
+    grid-template-columns: 70px 200px;
+    grid-template-rows:  2fr;
+    margin-bottom: 10px;
+}
+
+
+.message {
+    color: #fff;
+    align-self: center;
+}
+
+.ava {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+
+}
+
+.name {
+    color: #7a7a7b;
+    font-weight: 700;
+}

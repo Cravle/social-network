@@ -1,0 +1,22 @@
+.friends {
+    display: block;
+    width: 180px;
+    height: 200px;
+
+    margin-top: 20px;
+}
+
+.friends h4 {
+    display: block;
+    width: 140px;
+    padding: 10px 0 10px 20px;
+
+    border-bottom: 1px solid #333336;
+}
+
+.title {
+
+    color: #fff;
+    padding: 0;
+    margin: 0;
+}

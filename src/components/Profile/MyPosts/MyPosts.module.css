@@ -3,24 +3,13 @@
     grid-template-columns: 2fr 8fr;
 }
 
-.friends {
-    display: block;
-    width: 180px;
-    height: 200px;
-    margin-right: 20px;
-    background: #333336;
-}
-
-.friends h4 {
-    padding: 10px;
-}
 
 .content {
     grid-area: c;
     background-color: #222226;
 }
 
-h4 {
+.title {
     color: #fff;
     padding: 0;
     margin: 0;
@@ -60,7 +49,7 @@ h4 {
 }
 
 
-textarea {
+.textarea {
     margin-top: 10px;
     resize: none;
     width: 800px;
@@ -71,7 +60,7 @@ textarea {
 
 }
 
-textarea:focus {
+.textarea:focus {
 
     background-color: #444446;
 
