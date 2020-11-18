@@ -16,10 +16,14 @@ const Dialogs = (props) => {
                                                                   avaUrl={m.avaUrl}/>);
 
     let newMessage = React.createRef();
-    let addMessage = () => {
+
+    let onMessageChange = () => {
         let text = newMessage.current.value;
-        alert(text);
+        props.updateNewMessageText(text);
+
+
     }
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
@@ -31,13 +35,15 @@ const Dialogs = (props) => {
                 <div className={s.areaWrapper}>
                     <textarea className={s.textarea}
                               name="post"
+                              value={props.state.newMessage}
+                              onChange={onMessageChange}
                               id="post"
                               cols="10"
                               rows="50"
                               placeholder={"write a message"}
                               ref={newMessage}
                     />
-                    <button className={s.button} onClick={addMessage}>
+                    <button className={s.button} onClick={props.addMessage}>
                         <img
                             className={s.sendImg}
                             src="/send.svg"

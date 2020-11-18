@@ -1,4 +1,6 @@
-import {rerenderEntireTree} from "../render";
+let rerenderEntireTree = () => {
+    console.log("State changed");
+}
 
 let state = {
     profilePage: {
@@ -75,10 +77,10 @@ let state = {
         ]
     }
 }
-
 window.state = state;
 
-export let addPost = () => {
+
+export const addPost = () => {
 
     let newPost = {
         id: 5,
@@ -92,20 +94,32 @@ export let addPost = () => {
     rerenderEntireTree(state);
 }
 
-export let addMessage = () => {
+export const updateNewPostText = (postMessage) => {
+    state.profilePage.newPostText = postMessage;
+    rerenderEntireTree(state);
+}
+
+export const addMessage = () => {
     let newMessage = {
         id: 5,
         message: state.dialogsPage.newMessage,
-        avaUr: 'https://otvet.imgsmail.ru/download/201890154_cc41733ab1966f78f7c3923f8988db3e_800.jpg',
+        avaUrl: 'https://otvet.imgsmail.ru/download/201890154_cc41733ab1966f78f7c3923f8988db3e_800.jpg',
     }
 
-    state.profilePage.posts.push(newMessage);
+    state.dialogsPage.messages.push(newMessage);
     state.dialogsPage.newMessage = '';
+    rerenderEntireTree(state);
 }
 
-export let updateNewPostText = (postMessage) => {
-    state.profilePage.newPostText = postMessage;
+export const updateNewMessageText = (messageText) => {
+
+    state.dialogsPage.newMessage = messageText;
     rerenderEntireTree(state);
+}
+
+
+export const subscribe = (observer) => {
+    rerenderEntireTree = observer; // observer pattern
 }
 
 export default state;
