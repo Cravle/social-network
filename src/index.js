@@ -1,11 +1,9 @@
 import './index.css';
-import state, {subscribe} from "./Redux/state";
+import store from "./Redux/state";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-
-import {addPost, updateNewPostText, addMessage, updateNewMessageText} from "./Redux/state";
 import reportWebVitals from "./reportWebVitals";
 
 //addPost("samurai-js");
@@ -13,10 +11,10 @@ let rerenderEntireTree = (state) => {
     ReactDOM.render(
         <React.StrictMode>
             <App state={state}
-                 addPost={addPost}
-                 updateNewPostText={updateNewPostText}
-                 addMessage={addMessage}
-                 updateNewMessageText={updateNewMessageText}
+                 addPost={store.addPost.bind(store)}
+                 updateNewPostText={store.updateNewPostText.bind(store)}
+                 addMessage={store.addMessage.bind(store)}
+                 updateNewMessageText={store.updateNewMessageText.bind(store)}
             />
         </React.StrictMode>,
         document.getElementById('root')
@@ -24,9 +22,9 @@ let rerenderEntireTree = (state) => {
 
 }
 
-rerenderEntireTree(state);
+rerenderEntireTree(store.getState());
 
-subscribe(rerenderEntireTree);
+store.subscribe(rerenderEntireTree);
 
 reportWebVitals();
 

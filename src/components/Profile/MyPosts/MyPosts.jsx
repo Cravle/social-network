@@ -11,10 +11,10 @@ const MyPosts = (props) => {
 
     const onPostChange = () => {
         let text = newPostElement.current.value;
-        
+
         props.updateNewPostText(text);
     }
-
+  
     return (
         <div className={s.wrapper}>
             <div/>
