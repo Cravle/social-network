@@ -16,10 +16,14 @@ const Dialogs = (props) => {
                                                                   avaUrl={m.avaUrl}/>);
 
     let newMessage = React.createRef();
+    let addMessage = () => {
+        props.dispatch({type: 'ADD-MESSAGE'});
+    }
 
     let onMessageChange = () => {
-        let text = newMessage.current.value;
-        props.updateNewMessageText(text);
+        let messageText = newMessage.current.value;
+        let action = {type: 'UPDATE-NEW-MESSAGE-TEXT', messageText: messageText}
+        props.dispatch(action);
 
 
     }
@@ -43,7 +47,7 @@ const Dialogs = (props) => {
                               placeholder={"write a message"}
                               ref={newMessage}
                     />
-                    <button className={s.button} onClick={props.addMessage}>
+                    <button className={s.button} onClick={addMessage}>
                         <img
                             className={s.sendImg}
                             src="/send.svg"

@@ -77,10 +77,15 @@ let store = {
     _callSubscriber() {
         console.log("State changed");
     },
+
     getState() {
         return this._state;
     },
-    addPost() {
+    subscribe(observer) {
+        this._callSubscriber = observer; // observer pattern
+    },
+
+    _addPost() {
 
         let newPost = {
             id: 5,
@@ -94,13 +99,12 @@ let store = {
         this._callSubscriber(this._state);
     },
 
-    updateNewPostText(postMessage) {
+    _updateNewPostText(postMessage) {
         this._state.profilePage.newPostText = postMessage;
         this._callSubscriber(this._state);
     },
 
-    addMessage() {
-        debugger;
+    _addMessage() {
         let newMessage = {
             id: 5,
             message: this._state.dialogsPage.newMessage,
@@ -112,14 +116,40 @@ let store = {
         this._callSubscriber(this._state);
     },
 
-    updateNewMessageText(messageText) {
+    _updateNewMessageText(messageText) {
 
-        this._state.dialogsPage.newMessage = messageText;
-        this._callSubscriber(this._state);
+
     },
 
-    subscribe(observer) {
-        this._callSubscriber = observer; // observer pattern
+    dispatch(action) { // {type: 'ADD-POST'}
+        if (action.type === 'ADD-POST') {
+            let newPost = {
+                id: 5,
+                message: this._state.profilePage.newPostText,
+                likesCount: 0,
+            };
+
+            this._state.profilePage.posts.push(newPost);
+            this._state.profilePage.newPostText = '';
+
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.postMessage;
+            this._callSubscriber(this._state);
+        } else if (action.type === 'ADD-MESSAGE') {
+            let newMessage = {
+                id: 5,
+                message: this._state.dialogsPage.newMessage,
+                avaUrl: 'https://otvet.imgsmail.ru/download/201890154_cc41733ab1966f78f7c3923f8988db3e_800.jpg',
+            }
+
+            this._state.dialogsPage.messages.push(newMessage);
+            this._state.dialogsPage.newMessage = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
+            this._state.dialogsPage.newMessage = action.messageText;
+            this._callSubscriber(this._state);
+        }
     },
 
 }

@@ -8,13 +8,17 @@ const MyPosts = (props) => {
 
     let newPostElement = React.createRef();
 
+    let addPost = () => {
+        props.dispatch({type: 'ADD-POST'});
+    }
 
     const onPostChange = () => {
-        let text = newPostElement.current.value;
+        let postMessage = newPostElement.current.value;
 
-        props.updateNewPostText(text);
+        let action = {type: 'UPDATE-NEW-POST-TEXT', postMessage: postMessage}
+        props.dispatch(action);
     }
-  
+
     return (
         <div className={s.wrapper}>
             <div/>
@@ -32,7 +36,7 @@ const MyPosts = (props) => {
                               rows="50"/>
 
                     <div className={s.btnWrapper}>
-                        <button onClick={props.addPost} className={s.btn}>Add post
+                        <button onClick={addPost} className={s.btn}>Add post
                         </button>
                     </div>
 
