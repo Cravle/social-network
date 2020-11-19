@@ -1,3 +1,9 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+
+const ADD_MESSAGE = 'ADD-MESSAGE',
+    UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
+
 let store = {
     _state: {
         profilePage: {
@@ -6,7 +12,7 @@ let store = {
                 {id: 2, message: 'It\'s my first post', likesCount: 44},
                 {id: 3, message: 'It\'s my first post', likesCount: 55},
             ],
-            newPostText: "Type your thoughts..."
+            newPostText: ""
         },
         dialogsPage: {
             dialogs:
@@ -55,7 +61,7 @@ let store = {
                     avaUrl: 'https://sun1-19.userapi.com/c846417/v846417031/17ee5a/kuSfbkTPN7A.jpg',
                 },
             ],
-            newMessage: "Write a message"
+            newMessage: ""
 
         },
 
@@ -122,7 +128,7 @@ let store = {
     },
 
     dispatch(action) { // {type: 'ADD-POST'}
-        if (action.type === 'ADD-POST') {
+        if (action.type === ADD_POST) {
             let newPost = {
                 id: 5,
                 message: this._state.profilePage.newPostText,
@@ -133,10 +139,10 @@ let store = {
             this._state.profilePage.newPostText = '';
 
             this._callSubscriber(this._state);
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.postMessage;
             this._callSubscriber(this._state);
-        } else if (action.type === 'ADD-MESSAGE') {
+        } else if (action.type === ADD_MESSAGE) {
             let newMessage = {
                 id: 5,
                 message: this._state.dialogsPage.newMessage,
@@ -146,7 +152,7 @@ let store = {
             this._state.dialogsPage.messages.push(newMessage);
             this._state.dialogsPage.newMessage = '';
             this._callSubscriber(this._state);
-        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
+        } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
             this._state.dialogsPage.newMessage = action.messageText;
             this._callSubscriber(this._state);
         }
@@ -154,6 +160,23 @@ let store = {
 
 }
 
+export const addPostActionCreator = () => ({
+    type: ADD_POST,
+})
+
+export const updateNewPostTextActionCreator = (postMessage) => ({
+    type: UPDATE_NEW_POST_TEXT,
+    postMessage: postMessage,
+})
+
+export const addMessageActionCreator = () => ({
+    type: ADD_MESSAGE,
+})
+
+export const updateNewMessageTextActionCreator = (messageText) => ({
+    type: UPDATE_NEW_MESSAGE_TEXT,
+    messageText: messageText,
+})
 
 export default store;
 window.store = store;
