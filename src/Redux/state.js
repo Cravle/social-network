@@ -1,8 +1,7 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
+import sidebarReducer from "./sidebar-reducer";
 
-const ADD_MESSAGE = 'ADD-MESSAGE',
-    UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
 
 let store = {
     _state: {
@@ -128,55 +127,16 @@ let store = {
     },
 
     dispatch(action) { // {type: 'ADD-POST'}
-        if (action.type === ADD_POST) {
-            let newPost = {
-                id: 5,
-                message: this._state.profilePage.newPostText,
-                likesCount: 0,
-            };
 
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.newPostText = '';
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action);
+        this._callSubscriber(this._state);
 
-            this._callSubscriber(this._state);
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.postMessage;
-            this._callSubscriber(this._state);
-        } else if (action.type === ADD_MESSAGE) {
-            let newMessage = {
-                id: 5,
-                message: this._state.dialogsPage.newMessage,
-                avaUrl: 'https://otvet.imgsmail.ru/download/201890154_cc41733ab1966f78f7c3923f8988db3e_800.jpg',
-            }
-
-            this._state.dialogsPage.messages.push(newMessage);
-            this._state.dialogsPage.newMessage = '';
-            this._callSubscriber(this._state);
-        } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-            this._state.dialogsPage.newMessage = action.messageText;
-            this._callSubscriber(this._state);
-        }
     },
 
 }
 
-export const addPostActionCreator = () => ({
-    type: ADD_POST,
-})
-
-export const updateNewPostTextActionCreator = (postMessage) => ({
-    type: UPDATE_NEW_POST_TEXT,
-    postMessage: postMessage,
-})
-
-export const addMessageActionCreator = () => ({
-    type: ADD_MESSAGE,
-})
-
-export const updateNewMessageTextActionCreator = (messageText) => ({
-    type: UPDATE_NEW_MESSAGE_TEXT,
-    messageText: messageText,
-})
 
 export default store;
 window.store = store;

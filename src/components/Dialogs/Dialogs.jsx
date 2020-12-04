@@ -2,11 +2,11 @@ import React from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../Redux/state";
+import {addMessageCreator, updateNewMessageTextCreator} from "../../Redux/dialogs-reducer";
 
 
 //TODO Сообщение от меня в одном углу, от собеседника - в другом
-
+//TODO рефактор текст area : убрать реф, сделать через e.target
 const Dialogs = (props) => {
 
     let dialogsElements = props.state.dialogs.map(d => <DialogItem id={d.id}
@@ -18,12 +18,12 @@ const Dialogs = (props) => {
 
     let newMessage = React.createRef();
     let addMessage = () => {
-        props.dispatch(addMessageActionCreator());
+        props.dispatch(addMessageCreator());
     }
 
     let onMessageChange = () => {
         let messageText = newMessage.current.value;
-        props.dispatch(updateNewMessageTextActionCreator(messageText));
+        props.dispatch(updateNewMessageTextCreator(messageText));
 
 
     }
