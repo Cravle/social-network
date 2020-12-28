@@ -1,7 +1,58 @@
 const SEND_MESSAGE = 'ADD-MESSAGE',
     UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
 
-const dialogsReducer = (state, action) => {
+let initialState = {
+    dialogs:
+        [
+            {
+                id: 1,
+                name: 'Vitalya',
+                avaUrl: 'https://sun1-19.userapi.com/c846417/v846417031/17ee5a/kuSfbkTPN7A.jpg',
+            },
+            {
+                id: 2,
+                name: 'Vitya',
+                avaUrl: 'https://sun1-19.userapi.com/c846417/v846417031/17ee5a/kuSfbkTPN7A.jpg',
+            },
+            {
+                id: 3,
+                name: 'Artem',
+                avaUrl: 'https://sun1-83.userapi.com/c841023/v841023761/1d95c/jblyV5wP3EM.jpg',
+            },
+            {
+                id: 4,
+                name: 'Den',
+                avaUrl: 'https://sun1-19.userapi.com/c846417/v846417031/17ee5a/kuSfbkTPN7A.jpg',
+            },
+        ],
+    messages: [
+        {
+            id: 1,
+            message: 'Hi',
+
+            avaUrl: 'https://sun1-19.userapi.com/c846417/v846417031/17ee5a/kuSfbkTPN7A.jpg',
+        },
+        {
+            id: 2,
+            message: 'How is your web-site?',
+            avaUrl: 'https://sun1-19.userapi.com/c846417/v846417031/17ee5a/kuSfbkTPN7A.jpg',
+        },
+        {
+            id: 3,
+            message: 'Yo',
+            avaUrl: 'https://sun1-19.userapi.com/c846417/v846417031/17ee5a/kuSfbkTPN7A.jpg',
+        },
+        {
+            id: 4,
+            message: 'Yo',
+            avaUrl: 'https://sun1-19.userapi.com/c846417/v846417031/17ee5a/kuSfbkTPN7A.jpg',
+        },
+    ],
+    newMessage: ""
+
+};
+
+const dialogsReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case SEND_MESSAGE:
