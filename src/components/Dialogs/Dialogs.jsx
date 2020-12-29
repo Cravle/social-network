@@ -2,28 +2,30 @@ import React from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {addMessageCreator, updateNewMessageTextCreator} from "../../Redux/dialogs-reducer";
 
 
 //TODO Сообщение от меня в одном углу, от собеседника - в другом
-//TODO рефактор текст area : убрать реф, сделать через e.target
 const Dialogs = (props) => {
+    let state = props.dialogsPage;
 
-    let dialogsElements = props.state.dialogs.map(d => <DialogItem id={d.id}
-                                                                   name={d.name}
-                                                                   avaUrl={d.avaUrl}/>,);
 
-    let messagesElements = props.state.messages.map(m => <Message message={m.message}
-                                                                  avaUrl={m.avaUrl}/>);
+    let dialogsElements = state.dialogs.map(d => <DialogItem id={d.id}
+                                                             name={d.name}
+                                                             avaUrl={d.avaUrl}/>,);
+
+    let messagesElements = state.messages.map(m => <Message message={m.message}
+                                                            avaUrl={m.avaUrl}/>);
 
     let newMessage = React.createRef();
-    let addMessage = () => {
-        props.dispatch(addMessageCreator());
+    let onSendMessageClick = () => {
+        props.sendMessage();
+        //props.dispatch(addMessageCreator());
     }
 
-    let onMessageChange = () => {
-        let messageText = newMessage.current.value;
-        props.dispatch(updateNewMessageTextCreator(messageText));
+    let onMessageChange = (e) => {
+        let body = e.target.value;
+        props.updateNewMessage(body);
+        //props.dispatch(updateNewMessageTextCreator(messageText));
 
 
     }
@@ -39,7 +41,7 @@ const Dialogs = (props) => {
                 <div className={s.areaWrapper}>
                     <textarea className={s.textarea}
                               name="post"
-                              value={props.state.newMessage}
+                              value={state.newMessage}
                               onChange={onMessageChange}
                               id="post"
                               cols="10"
@@ -47,7 +49,7 @@ const Dialogs = (props) => {
                               placeholder={"write a message"}
                               ref={newMessage}
                     />
-                    <button className={s.button} onClick={addMessage}>
+                    <button className={s.button} onClick={onSendMessageClick}>
                         <img
                             className={s.sendImg}
                             src="/send.svg"

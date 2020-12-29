@@ -8,9 +8,10 @@ import reportWebVitals from "./reportWebVitals";
 
 //addPost("samurai-js");
 let rerenderEntireTree = (state) => {
+    
     ReactDOM.render(
         <React.StrictMode>
-            <App state={state}
+            <App store={store}
                  dispatch={store.dispatch.bind(store)}
 
 
