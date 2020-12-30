@@ -5,28 +5,27 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from "./reportWebVitals";
+import {BrowserRouter} from "react-router-dom";
+import {Provider} from "react-redux";
 
 //addPost("samurai-js");
-let rerenderEntireTree = (state) => {
-    
+let rerenderEntireTree = () => {
+
     ReactDOM.render(
-        <React.StrictMode>
-            <App store={store}
-                 dispatch={store.dispatch.bind(store)}
-
-
-            />
-        </React.StrictMode>,
+        <BrowserRouter>
+            <Provider store={store}>
+                <App/>
+            </Provider>
+        </BrowserRouter>,
         document.getElementById('root')
     );
 
 }
 
-rerenderEntireTree(store.getState());
+rerenderEntireTree();
 
 store.subscribe(() => {
-    let state = store.getState();
-    rerenderEntireTree(state);
+    rerenderEntireTree();
 });
 
 reportWebVitals();
