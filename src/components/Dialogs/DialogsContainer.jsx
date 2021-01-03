@@ -10,16 +10,20 @@ import {connect} from "react-redux";
 
 let mapStateToProps = (state) => {
     return {
-        dialogsPage: state.dialogsPage
+
+        dialogs: state.dialogsPage.dialogs,
+        messages: state.dialogsPage.messages,
+        newMessage: state.dialogsPage.newMessage,
     }
 }
-//20 29
+
+
 let mapDispatchToProps = (dispatch) => {
     return {
-        updateNewMessage: () => {
+        sendMessage: () => {
             dispatch(addMessageCreator());
         },
-        sendMessage: (body) => {
+        updateNewMessage: (body) => {
             dispatch(updateNewMessageTextCreator(body));
         },
     }

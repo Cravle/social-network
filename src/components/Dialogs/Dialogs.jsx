@@ -6,14 +6,12 @@ import Message from "./Message/Message";
 
 //TODO Сообщение от меня в одном углу, от собеседника - в другом
 const Dialogs = (props) => {
-    let state = props.dialogsPage;
 
-
-    let dialogsElements = state.dialogs.map(d => <DialogItem id={d.id}
+    let dialogsElements = props.dialogs.map(d => <DialogItem id={d.id}
                                                              name={d.name}
                                                              avaUrl={d.avaUrl}/>,);
 
-    let messagesElements = state.messages.map(m => <Message message={m.message}
+    let messagesElements = props.messages.map(m => <Message message={m.message}
                                                             avaUrl={m.avaUrl}/>);
 
     let newMessage = React.createRef();
@@ -41,7 +39,7 @@ const Dialogs = (props) => {
                 <div className={s.areaWrapper}>
                     <textarea className={s.textarea}
                               name="post"
-                              value={state.newMessage}
+                              value={props.newMessage}
                               onChange={onMessageChange}
                               id="post"
                               cols="10"
