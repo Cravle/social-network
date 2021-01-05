@@ -11,7 +11,6 @@ const Dialogs = (props) => {
                                                              key={d.id}
                                                              name={d.name}
                                                              avaUrl={d.avaUrl}/>,);
-
     let messagesElements = props.messages.map(m => <Message message={m.message}
                                                             key={m.id}
                                                             avaUrl={m.avaUrl}/>);
