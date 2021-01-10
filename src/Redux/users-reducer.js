@@ -1,9 +1,12 @@
 const FOLLOW = 'FOLLOW',
     UNFOLLOW = 'UNFOLLOW',
-    SET_USERS = 'SET-USERS';
+    SET_USERS = 'SET-USERS',
+    SET_CURRENT_PAGE = 'SET-CURRENT-PAGE',
+    SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT';
 
 let initialState = {
     users: [
+
         // {
         //     id: 1,
         //     followed: false,
@@ -49,6 +52,9 @@ let initialState = {
         //     avaUrl: 'https://steamuserimages-a.akamaihd.net/ugc/179412883250505688/55C716B686C3D74A20BBCB73D83EF8C21F1EBBC9/',
         // },
     ],
+    pageSize: 5,
+    totalUsersCount: 0,
+    currentPage: 1,
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -76,8 +82,14 @@ const usersReducer = (state = initialState, action) => {
         case SET_USERS: {
             return {
                 ...state,
-                users: [...state.users, ...action.users]
+                users: [...action.users]
             }
+        }
+        case SET_CURRENT_PAGE: {
+            return {...state, currentPage: action.currentPage}
+        }
+        case SET_TOTAL_USERS_COUNT: {
+            return {...state, totalUsersCount: action.count}
         }
         default:
             return state;
@@ -99,7 +111,22 @@ export const unfollowAC = (userId) => ({
 
 export const setUsersAC = (users) => (
     {
-        type: SET_USERS, users
+        type: SET_USERS,
+        users,
+    }
+)
+
+export const setCurrentPageAC = (currentPage) => (
+    {
+        type: SET_CURRENT_PAGE,
+        currentPage,
+    }
+)
+
+export const setTotalUsersCountAC = (totalUsersCount) => (
+    {
+        type: SET_TOTAL_USERS_COUNT,
+        count: totalUsersCount,
     }
 )
 export default usersReducer;

@@ -1,8 +1,73 @@
+.pageBtn {
+    color: #7a7a7b;
+    background-color: #444446;
+    padding: 5px 10px;
+    vertical-align: top;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+
+.selectedPage {
+    color: #7a7a7b;
+    background-color: #333336;
+    padding: 5px 10px;
+    vertical-align: top;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    border: none;
+
+}
+
+.wrapper {
+    margin-top: 15px;
+}
+
+.usersWrapper {
+    color: #7a7a7b;
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+    margin-bottom: 15px;
+
+}
+
+
 .ava {
     width: 100px;
     height: 100px;
     border-radius: 50%;
 
+}
+
+.avaBtnWrapper {
+    max-width: 100px;
+}
+
+.btnWrapper {
+    display: grid;
+
+    align-self: center;
+
+}
+
+.fbtn {
+    padding: 5px 15px;
+    color: #ffffff;
+    outline: none;
+    border: none;
+    text-align: right;
+    background-color: #444446;
+    cursor: pointer;
+    transition: hover .1s linear;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.info {
+    margin-top: 10px;
+    background-color: #222226;
+    width: 800px;
 }
 
 
