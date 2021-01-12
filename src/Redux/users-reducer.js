@@ -1,9 +1,12 @@
+import {act} from "@testing-library/react";
+
 const FOLLOW = 'FOLLOW',
     UNFOLLOW = 'UNFOLLOW',
     SET_USERS = 'SET-USERS',
     SET_CURRENT_PAGE = 'SET-CURRENT-PAGE',
     SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT',
-    TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
+    TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING',
+    TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE-IS-FOLLOWING-PROGRESS';
 
 let initialState = {
     users: [],
@@ -11,6 +14,7 @@ let initialState = {
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
+    followingInProgress: [],
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -49,6 +53,14 @@ const usersReducer = (state = initialState, action) => {
         }
         case TOGGLE_IS_FETCHING: {
             return {...state, isFetching: action.isFetching}
+        }
+        case TOGGLE_IS_FOLLOWING_PROGRESS: {
+            return {
+                ...state,
+                followingInProgress: action.isFetching ?
+                    [...state.followingInProgress, action.userId] :
+                    [state.followingInProgress.filter(id => id != action.userId)]
+            }
         }
         default:
             return state;
@@ -92,6 +104,14 @@ export const toggleIsFetching = (isFetching) => (
     {
         type: TOGGLE_IS_FETCHING,
         isFetching,
+    }
+)
+
+export const toggleFollowingProgress = (isFetching, userId) => (
+    {
+        type: TOGGLE_IS_FOLLOWING_PROGRESS,
+        isFetching,
+        userId
     }
 )
 export default usersReducer;
