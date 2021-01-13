@@ -3,7 +3,6 @@ import s from './Header.module.css';
 import {NavLink} from "react-router-dom";
 
 //TODO показать автарку сверху
-//TOOD сделать подписку на пользователя через сервак
 
 const Header = (props) => {
     return (
@@ -13,13 +12,16 @@ const Header = (props) => {
                     <img src="https://cdn.iconscout.com/icon/free/png-512/vk-18-898139.png" alt=""/>
                 </div>
                 <></>
-
-                <NavLink to={'/login'} className={s.login}>{
-
+                <div className={s.login}>{
                     props.isAuth ?
-                        `${props.login}` :
-                        "login"
-                }</NavLink>
+                        <NavLink to={'/profile'} className={s.login}>
+                            {props.login}
+                        </NavLink> :
+                        <NavLink to={'/login'} className={s.login}>
+                            login
+                        </NavLink>
+                }
+                </div>
             </div>
         </header>
     )
