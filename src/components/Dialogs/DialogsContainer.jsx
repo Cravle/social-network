@@ -2,6 +2,9 @@ import React from 'react';
 import {addMessageCreator, updateNewMessageTextCreator} from "../../Redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
+import {Redirect} from "react-router-dom";
+import {withAuthRedirect} from "../../hoc/withAuthReditect";
+import {compose} from "redux";
 
 
 //TODO Сообщение от меня в одном углу, от собеседника - в другом
@@ -13,7 +16,6 @@ let mapStateToProps = (state) => {
         dialogs: state.dialogsPage.dialogs,
         messages: state.dialogsPage.messages,
         newMessage: state.dialogsPage.newMessage,
-        isAuth: state.auth.isAuth,
     }
 }
 
@@ -29,6 +31,7 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
-
-export default DialogsContainer;
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect
+)(Dialogs);

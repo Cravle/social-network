@@ -1,6 +1,7 @@
 import React from 'react';
 import s from "./ProfileInfo.module.css";
 import Preloader from "../../comoon/preloader/Preloader";
+import ProfileStatus from './ProfileStatus'
 //TODO отобразить всю инфу с  https://social-network.samuraijs.com/api/1.0/profile/2
 const ProfileInfo = (props) => {
 
@@ -9,11 +10,11 @@ const ProfileInfo = (props) => {
     } else
         return (
             <div className={s.myPage}>
-                <div className={s.shapka}>
-                    <img
-                        src={"https://bgfons.com/upload/asphalt_texture409.jpg"}
-                        alt=""/>
-                </div>
+                {/*<div className={s.shapka}>*/}
+                {/*    <img*/}
+                {/*        src={"https://bgfons.com/upload/asphalt_texture409.jpg"}*/}
+                {/*        alt=""/>*/}
+                {/*</div>*/}
 
                 <div className={s.info}>
                     <div className={s.ava}>
@@ -24,16 +25,13 @@ const ProfileInfo = (props) => {
                         </div>
                     </div>
                     <div className={s.description}>
-                        <div>{props.profile.fullName || "Vladyslav Loboda"}</div>
-                        <div>{props.profile.aboutMe}</div>
+                        <h1>{props.profile.fullName || "Vladyslav Loboda"}</h1>
+                        <ProfileStatus status={props.profile.aboutMe}/>
                         <div>{props.profile.lookingForAJob ?
                             `В поиске работы: ${props.profile.lookingForAJobDescription}` :
                             "Работу не ищу"}</div>
                         <div>social links:</div>
-                        <div>{
 
-
-                        }</div>
                     </div>
 
                 </div>

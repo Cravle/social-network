@@ -10,7 +10,7 @@
 }
 
 .wrapper {
-    width: 1220px;
+    width: 1190px;
     display: grid;
     margin: 0 auto;
     grid-template-columns: 40px auto 40px;
@@ -20,7 +20,7 @@
 
 .imgWrapper {
     display: grid;
-    max-width: 150px;
+    max-width: 125px;
     grid-area: b;
 }
 
