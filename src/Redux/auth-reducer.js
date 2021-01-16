@@ -18,6 +18,7 @@ const authReducer = (state = initialState, action) => {
                 isAuth: true,
             }
 
+
         default:
             return state;
 
@@ -38,6 +39,19 @@ export const getAuthUserData = () => {
                     dispatch(setAuthUserData(id, email, login));
                 }
             });
+    }
+}
+
+export const postAuthLogin = (email, password, rememberMe) => {
+    return (dispatch) => {
+        authAPI.login(email, password, rememberMe)
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    alert("авторизация успешна")
+                    getAuthUserData();
+                } else
+                    alert("Ошибка авторизации")
+            })
     }
 }
 

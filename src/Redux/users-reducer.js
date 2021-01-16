@@ -1,4 +1,3 @@
-import {act} from "@testing-library/react";
 import {usersAPI} from "../api/api";
 
 const FOLLOW = 'FOLLOW',
@@ -60,7 +59,7 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 followingInProgress: action.isFetching ?
                     [...state.followingInProgress, action.userId] :
-                    [state.followingInProgress.filter(id => id != action.userId)]
+                    [state.followingInProgress.filter(id => id !== action.userId)]
             }
         }
         default:

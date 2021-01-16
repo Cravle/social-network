@@ -3,6 +3,10 @@
     grid-template-columns: 2fr 800px;
 }
 
+.empty {
+
+}
+
 
 .content {
     grid-area: c;
@@ -16,6 +20,7 @@
 }
 
 .posts {
+    margin-left: 10px;
 }
 
 .btn {
@@ -48,18 +53,21 @@
 }
 
 
-.textarea {
-    margin-top: 10px;
+.input {
+    margin: 10px 0 0 0;
     resize: none;
-    width: 800px;
+    width: 100%;
     height: 80px;
     color: #fff;
     background-color: #333336;
     border-radius: 3px;
+    box-sizing: border-box;
+    text-align: left;
+    padding: 10px;
 
 }
 
-.textarea:focus {
+.input:focus {
 
     background-color: #444446;
 

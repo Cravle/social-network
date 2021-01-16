@@ -3,7 +3,38 @@ import s from './Dialogs.module.css'
 import {Redirect} from "react-router-dom";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
+import {Field, reset, reduxForm} from "redux-form";
 
+const MessageForm = (props) => {
+    return (
+
+        <form onSubmit={props.handleSubmit} className={s.areaWrapper}>
+            <Field
+                component={"textarea"}
+                type={"text"}
+                className={s.textarea}
+                name="message"
+                id="message"
+                cols="10"
+                rows="50"
+                placeholder={"write a message"}
+            />
+            <button className={s.button} onClick={props.onSendMessageClick}>
+                <img
+                    className={s.sendImg}
+                    src="/send.svg"
+                    alt="send"/>
+            </button>
+        </form>
+    )
+}
+const afterSubmit = (result, dispatch) =>
+    dispatch(reset('message'));
+
+const MessageReduxForm = reduxForm({
+    form: 'message',
+    onSubmitSuccess: afterSubmit,
+})(MessageForm)
 
 //TODO Сообщение от меня в одном углу, от собеседника - в другом
 const Dialogs = (props) => {
@@ -16,17 +47,15 @@ const Dialogs = (props) => {
                                                             key={m.id}
                                                             avaUrl={m.avaUrl}/>);
 
-    let newMessage = React.createRef();
-    let onSendMessageClick = () => {
+
+    let onSendMessageClick = (formData) => {
+        console.log(formData)
+        props.updateNewMessage(formData.message);
         props.sendMessage();
-        //props.dispatch(addMessageCreator());
+
     }
 
-    let onMessageChange = (e) => {
-        let body = e.target.value;
-        props.updateNewMessage(body);
-        //props.dispatch(updateNewMessageTextCreator(messageText));
-    }
+    
     if (!props.isAuth) {
         return <Redirect to={"/login"}/>
     }
@@ -35,30 +64,14 @@ const Dialogs = (props) => {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
+
                 {dialogsElements}
             </div>
-
             <div className={s.messagesWrapper}>
                 {messagesElements}
-                <div className={s.areaWrapper}>
-                    <textarea className={s.textarea}
-                              name="post"
-                              value={props.newMessage}
-                              onChange={onMessageChange}
-                              id="post"
-                              cols="10"
-                              rows="50"
-                              placeholder={"write a message"}
-                              ref={newMessage}
-                    />
-                    <button className={s.button} onClick={onSendMessageClick}>
-                        <img
-                            className={s.sendImg}
-                            src="/send.svg"
-                            alt="send"/>
-                    </button>
-                </div>
+                <MessageReduxForm onSubmit={onSendMessageClick}/>
             </div>
+
         </div>
     )
 }

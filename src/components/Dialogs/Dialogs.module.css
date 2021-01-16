@@ -32,8 +32,10 @@
     height: 20px;
     color: #fff;
     background-color: transparent;
+    border-color: #7a7a7b;
     border-radius: 10px;
-    padding: 10px
+    padding: 10px;
+
 }
 
 .textarea:hover, .textarea:focus {
