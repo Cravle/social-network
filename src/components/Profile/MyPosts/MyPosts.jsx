@@ -2,17 +2,23 @@ import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post'
 import {Field, reset, reduxForm} from "redux-form";
+import {maxLengthCreator, required} from "../../../utils/validators/validators";
+import {PostTextArea} from "../../comoon/FormsCntrols/FormsControls";
+
+
+const maxLength10 = maxLengthCreator(10);
 
 const PostForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit} className={s.postWrapper}>
             <Field
-                component={"textarea"}
+                component={PostTextArea}
+                validate={[required, maxLength10]}
                 type={"text"}
-                className={s.input}
                 name={'post'}
+                errorClass={s.errorMsg}
                 placeholder={'Type your thoughts...'}
-                id="post"
+
             />
 
             <div className={s.btnWrapper}>
@@ -39,8 +45,8 @@ const MyPosts = (props) => {
 
 
     let onSubmit = (formData) => {
-        props.updateNewPostText(formData.post);
-        props.addPost();
+
+        props.addPost(formData.post);
     }
 
 

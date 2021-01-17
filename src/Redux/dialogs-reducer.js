@@ -1,5 +1,4 @@
-const SEND_MESSAGE = 'ADD-MESSAGE',
-    UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
+const SEND_MESSAGE = 'ADD-MESSAGE';
 
 let initialState = {
     dialogs:
@@ -48,7 +47,6 @@ let initialState = {
             avaUrl: 'https://sun1-19.userapi.com/c846417/v846417031/17ee5a/kuSfbkTPN7A.jpg',
         },
     ],
-    newMessage: ""
 
 };
 
@@ -58,38 +56,29 @@ const dialogsReducer = (state = initialState, action) => {
         case SEND_MESSAGE: {
             let newMessageObj = {
                 id: state.messages[state.messages.length - 1].id + 1,
-                message: state.newMessage,
+                message: action.newMessage,
                 avaUrl: 'https://otvet.imgsmail.ru/download/201890154_cc41733ab1966f78f7c3923f8988db3e_800.jpg',
             }
             return {
                 ...state,
-                newMessage: "",
                 messages: [...state.messages, newMessageObj],
 
             }
 
 
         }
-        case UPDATE_NEW_MESSAGE_TEXT: {
-            return {
-                ...state,
-                newMessage: action.messageText
-            }
-
-        }
+        
         default:
             return state;
     }
 
 
 }
-export const addMessageCreator = () => ({
+export const addMessageCreator = (newMessage) => ({
     type: SEND_MESSAGE,
+    newMessage
 })
 
-export const updateNewMessageTextCreator = (messageText) => ({
-    type: UPDATE_NEW_MESSAGE_TEXT,
-    messageText: messageText,
-})
+
 export default dialogsReducer;
 

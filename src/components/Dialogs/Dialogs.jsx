@@ -4,22 +4,27 @@ import {Redirect} from "react-router-dom";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {Field, reset, reduxForm} from "redux-form";
+import {MessageTextArea} from "../comoon/FormsCntrols/FormsControls";
+import {maxLengthCreator, required} from "../../utils/validators/validators";
+
+const maxLength100 = maxLengthCreator(100);
 
 const MessageForm = (props) => {
     return (
 
         <form onSubmit={props.handleSubmit} className={s.areaWrapper}>
             <Field
-                component={"textarea"}
+                component={MessageTextArea}
+                errorClass={s.errorMsgAbs}
                 type={"text"}
-                className={s.textarea}
+                validate={[required, maxLength100]}
                 name="message"
                 id="message"
                 cols="10"
                 rows="50"
                 placeholder={"write a message"}
             />
-            <button className={s.button} onClick={props.onSendMessageClick}>
+            <button className={s.button}>
                 <img
                     className={s.sendImg}
                     src="/send.svg"
@@ -49,13 +54,11 @@ const Dialogs = (props) => {
 
 
     let onSendMessageClick = (formData) => {
-        console.log(formData)
-        props.updateNewMessage(formData.message);
-        props.sendMessage();
+        props.sendMessage(formData.message);
 
     }
 
-    
+
     if (!props.isAuth) {
         return <Redirect to={"/login"}/>
     }

@@ -21,12 +21,19 @@
 }
 
 .dialog {
-    padding: 10px;
+    padding: 5px 0;
     display: block;
     width: 250px;
     color: #ffffff;
-
     text-decoration: none;
+}
+
+.dialog:first-child {
+    padding-top: 0;
+}
+
+.dialog + .dialog {
+    padding-top: 10px;
 }
 
 .dialog.active {

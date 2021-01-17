@@ -1,19 +1,32 @@
 import React from 'react';
 import s from "./Login.module.css"
 import {Field, reduxForm} from "redux-form";
+import {Input} from "../comoon/FormsCntrols/FormsControls";
+import {required} from "../../utils/validators/validators";
 
 //TODO react-hook-form
-//TODO Api логинизация
 
 const LoginForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field type="email" placeholder={"email"} name={"email"} component={"input"}/>
+                <Field
+                    type="email"
+                    placeholder={"email"}
+                    name={"email"}
+                    component={Input}
+                    errorClass={s.errorMsg}
+                    validate={[required]}
+                />
             </div>
             <div>
-                <Field type="password" placeholder={"Password"} name={"password"}
-                       component={"input"}/>
+                <Field type="password"
+                       placeholder={"Password"}
+                       name={"password"}
+                       component={Input}
+                       errorClass={s.errorMsg}
+                       validate={[required]}
+                />
             </div>
             <div>
                 <Field type="checkbox" name={"rememberMe"} component={"input"}/> remember me
