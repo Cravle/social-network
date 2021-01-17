@@ -1,7 +1,7 @@
 import React from 'react';
 import Login from "./Login";
 import {connect} from "react-redux";
-import {postAuthLogin} from "../../Redux/auth-reducer";
+import {deleteAuthLogin, postAuthLogin} from "../../Redux/auth-reducer";
 
 
 //TODO react-hook-form
@@ -9,6 +9,7 @@ import {postAuthLogin} from "../../Redux/auth-reducer";
 
 class LoginContainer extends React.Component {
     render() {
+        
         return (
             <Login
                 isAuth={this.props.isAuth}
@@ -18,12 +19,12 @@ class LoginContainer extends React.Component {
     }
 }
 
-
 const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth
 })
 
-
 export default connect(mapStateToProps, {
-    postAuthLogin
+    postAuthLogin,
+    deleteAuthLogin
+
 })(LoginContainer);

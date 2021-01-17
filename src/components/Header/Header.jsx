@@ -3,7 +3,7 @@ import s from './Header.module.css';
 import {NavLink} from "react-router-dom";
 
 //TODO показать автарку сверху
-
+//TODO Капча с докум
 const Header = (props) => {
     return (
         <header className={s.header}>
@@ -13,10 +13,12 @@ const Header = (props) => {
                 </div>
                 <></>
                 <div className={s.login}>{
-                    props.isAuth ?
-                        <NavLink to={'/profile'} className={s.login}>
-                            {props.login}
-                        </NavLink> :
+                    props.isAuth ? <>
+                            <NavLink to={'/profile'} className={s.login}>
+                                {props.login}
+                            </NavLink>
+                            <button onClick={props.deleteAuthLogin}>Log out</button>
+                        </> :
                         <NavLink to={'/login'} className={s.login}>
                             login
                         </NavLink>

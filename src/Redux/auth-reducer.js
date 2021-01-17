@@ -14,20 +14,18 @@ const authReducer = (state = initialState, action) => {
         case SET_USER_DATA:
             return {
                 ...state,
-                ...action.data,
-                isAuth: true,
+                ...action.payload,
+                
             }
-
-
         default:
             return state;
 
     }
 }
 
-export const setAuthUserData = (userId, email, login) => ({
+export const setAuthUserData = (userId, email, login, isAuth) => ({
     type: SET_USER_DATA,
-    data: {userId, email, login},
+    payload: {userId, email, login, isAuth},
 })
 
 export const getAuthUserData = () => {
@@ -36,7 +34,7 @@ export const getAuthUserData = () => {
             .then(response => {
                 if (response.data.resultCode === 0) {
                     let {id, login, email} = response.data.data;
-                    dispatch(setAuthUserData(id, email, login));
+                    dispatch(setAuthUserData(id, email, login, true));
                 }
             });
     }
@@ -48,9 +46,20 @@ export const postAuthLogin = (email, password, rememberMe) => {
             .then(response => {
                 if (response.data.resultCode === 0) {
                     alert("авторизация успешна")
-                    getAuthUserData();
+                    dispatch(getAuthUserData());
                 } else
                     alert("Ошибка авторизации")
+            })
+    }
+}
+
+export const deleteAuthLogin = () => {
+    return (dispatch) => {
+        authAPI.logout()
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(setAuthUserData(null, null, null, false));
+                }
             })
     }
 }
