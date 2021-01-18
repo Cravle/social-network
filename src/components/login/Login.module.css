@@ -2,6 +2,19 @@ body {
     color: #7a7a7b;
 }
 
+.wrapper {
+    max-width: 163px;
+}
+
 .errorMsg {
     color: red;
+}
+
+
+.formSummaryError {
+    margin-top: 5px;
+    display: inline-block;
+    border: 1px solid red;
+    color: red;
+    padding: 5px;
 }

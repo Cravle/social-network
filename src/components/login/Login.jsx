@@ -35,6 +35,10 @@ const LoginForm = (props) => {
             <div>
                 <button type={"submit"}>Log in</button>
             </div>
+            {props.error &&
+            <div className={s.formSummaryError}>
+                {props.error}
+            </div>}
         </form>
     )
 }
@@ -51,10 +55,10 @@ const Login = (props) => {
     if (props.isAuth) {
         return <Redirect to={'/profile'}/>
     }
-    return <>
+    return <div className={s.wrapper}>
         <h1>Login</h1>
         <LoginReduxForm onSubmit={onSubmit}/>
-    </>
+    </div>
 }
 
 

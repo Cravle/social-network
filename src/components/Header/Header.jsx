@@ -12,12 +12,13 @@ const Header = (props) => {
                     <img src="https://cdn.iconscout.com/icon/free/png-512/vk-18-898139.png" alt=""/>
                 </div>
                 <></>
-                <div className={s.login}>{
+                <div className={s.loginWrapper}>{
                     props.isAuth ? <>
                             <NavLink to={'/profile'} className={s.login}>
                                 {props.login}
                             </NavLink>
-                            <button onClick={props.deleteAuthLogin}>Log out</button>
+                            <button className={s.logout} onClick={props.deleteAuthLogin}>Log out
+                            </button>
                         </> :
                         <NavLink to={'/login'} className={s.login}>
                             login
