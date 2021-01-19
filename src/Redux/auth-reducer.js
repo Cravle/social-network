@@ -29,23 +29,20 @@ export const setAuthUserData = (userId, email, login, isAuth) => ({
 })
 
 //is auth? for header
-export const getAuthUserData = () => {
-    return (dispatch) => {
-        authAPI.me()
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    let {id, login, email} = response.data.data;
-                    dispatch(setAuthUserData(id, email, login, true));
-                }
-            });
-    }
+export const getAuthUserData = () => (dispatch) => {
+    return authAPI.me()
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                let {id, login, email} = response.data.data;
+                dispatch(setAuthUserData(id, email, login, true));
+            }
+        });
+    
 }
 
 //login
 export const postAuthLogin = (email, password, rememberMe) => {
     return (dispatch) => {
-
-
         authAPI.login(email, password, rememberMe)
             .then(response => {
                     if (response.data.resultCode === 0) {
@@ -63,7 +60,7 @@ export const postAuthLogin = (email, password, rememberMe) => {
 
 export const deleteAuthLogin = () => {
     return (dispatch) => {
-        authAPI.logout()
+        return authAPI.logout()
             .then(response => {
                 if (response.data.resultCode === 0) {
                     dispatch(setAuthUserData(null, null, null, false));
