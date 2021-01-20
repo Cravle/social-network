@@ -16,7 +16,7 @@ const PostForm = (props) => {
                 validate={[required, maxLength10]}
                 type={"text"}
                 name={'post'}
-                errorClass={s.errorMsg}
+                errorclass={s.errorMsg}
                 placeholder={'Type your thoughts...'}
 
             />
@@ -41,7 +41,9 @@ const PostReduxForm = reduxForm({
 const MyPosts = (props) => {
     let postsElements = props.posts.map(p => <Post message={p.message}
                                                    key={p.id}
-                                                   likesCount={p.likesCount}/>)
+                                                   likesCount={p.likesCount}
+                                                   profile={props.profile}
+    />)
 
 
     let onSubmit = (formData) => {

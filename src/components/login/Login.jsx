@@ -16,7 +16,7 @@ const LoginForm = (props) => {
                     placeholder={"email"}
                     name={"email"}
                     component={Input}
-                    errorClass={s.errorMsg}
+                    errorclass={s.errorMsg}
                     validate={[required]}
                 />
             </div>
@@ -25,7 +25,7 @@ const LoginForm = (props) => {
                        placeholder={"Password"}
                        name={"password"}
                        component={Input}
-                       errorClass={s.errorMsg}
+                       errorclass={s.errorMsg}
                        validate={[required]}
                 />
             </div>

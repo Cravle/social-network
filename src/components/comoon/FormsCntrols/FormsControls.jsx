@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './FormsControls.module.css'
 //TODO исправить стили форм
-const FormControl = ({input, meta, child, errorClass, ...props}) => {
+const FormControl = ({input, meta, child, errorclass, ...props}) => {
     const hasError = meta.touched && meta.error;
     return (
         <div className={s.messageWrapper}>
@@ -9,7 +9,7 @@ const FormControl = ({input, meta, child, errorClass, ...props}) => {
                 {props.children}
             </div>
             {hasError &&
-            <span className={errorClass}>{meta.error}</span>
+            <span className={errorclass}>{meta.error}</span>
             }
         </div>
     )

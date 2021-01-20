@@ -2,9 +2,9 @@ import React from 'react';
 import s from "./ProfileInfo.module.css";
 import Preloader from "../../comoon/preloader/Preloader";
 import ProfileStatus from './ProfileStatus'
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 //TODO отобразить всю инфу с  https://social-network.samuraijs.com/api/1.0/profile/2
 const ProfileInfo = (props) => {
-
     if (!props.profile) {
         return <Preloader/>
     } else
@@ -27,7 +27,7 @@ const ProfileInfo = (props) => {
                     <div className={s.description}>
                         <h1>{props.profile.fullName || "Vladyslav Loboda"}</h1>
 
-                        <ProfileStatus
+                        <ProfileStatusWithHooks
                             status={props.status}
                             updateUserStatus={props.updateUserStatus}
                         />

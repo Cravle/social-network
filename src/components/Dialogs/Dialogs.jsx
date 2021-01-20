@@ -15,7 +15,7 @@ const MessageForm = (props) => {
         <form onSubmit={props.handleSubmit} className={s.areaWrapper}>
             <Field
                 component={MessageTextArea}
-                errorClass={s.errorMsgAbs}
+                errorclass={s.errorMsgAbs}
                 type={"text"}
                 validate={[required, maxLength100]}
                 name="message"
