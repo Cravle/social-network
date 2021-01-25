@@ -17,7 +17,7 @@ let Users = (props) => {
                         return (
                             <button
                                 key={p}
-                                className={props.currentPage === p && s.selectedPage || s.pageBtn}
+                                className={props.currentPage === p ? s.selectedPage : s.pageBtn}
                                 onClick={(e) => {
                                     props.onPageChanged(p);
                                 }

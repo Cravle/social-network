@@ -1,11 +1,11 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post'
-import {Field, reset, reduxForm} from "redux-form";
+import {Field, reduxForm, reset} from "redux-form";
 import {maxLengthCreator, required} from "../../../utils/validators/validators";
 import {PostTextArea} from "../../comoon/FormsCntrols/FormsControls";
 
-
+//TODO загрузка профиле во время загрузки приложения
 const maxLength10 = maxLengthCreator(10);
 
 const PostForm = (props) => {
@@ -38,13 +38,14 @@ const PostReduxForm = reduxForm({
     onSubmitSuccess: afterSubmit,
 })(PostForm)
 
-const MyPosts = (props) => {
+const MyPosts = React.memo(props => {
+
     let postsElements = props.posts.map(p => <Post message={p.message}
                                                    key={p.id}
                                                    likesCount={p.likesCount}
                                                    profile={props.profile}
     />)
-
+    console.log('render');
 
     let onSubmit = (formData) => {
 
@@ -68,6 +69,6 @@ const MyPosts = (props) => {
         </div>
     )
 
-}
+});
 
 export default MyPosts;

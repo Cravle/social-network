@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import {BrowserRouter, Route, withRouter} from "react-router-dom";
+import {BrowserRouter, HashRouter, Redirect, Route, withRouter} from "react-router-dom";
 import Settings from "./components/Settings/Settings";
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
@@ -21,9 +21,15 @@ class App extends React.Component {
         this.props.initializeApp();
     }
 
+
     render() {
+
         if (!this.props.initialized) {
             return <Preloader/>
+        }
+        if (this.props.location.pathname === "/") {
+            return <Redirect to={'profile'}/>
+
         }
         return (
             <BrowserRouter>
