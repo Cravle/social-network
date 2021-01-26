@@ -7,7 +7,6 @@ import {
 } from "../../Redux/users-reducer";
 import Users from "./Users";
 import Preloader from "../comoon/preloader/Preloader";
-import {withAuthRedirect} from "../../hoc/withAuthReditect";
 import {compose} from "redux";
 import {
 
@@ -21,7 +20,8 @@ class UsersContainer extends React.Component {
 
 
     componentDidMount() {
-        this.props.requestUsers(this.props.currentPage, this.props.pageSize);
+        const {currentPage, pageSize} = this.props;
+        this.props.requestUsers(currentPage, pageSize);
     }
 
 

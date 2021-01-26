@@ -1,15 +1,15 @@
 import React from 'react';
 import s from './FormsControls.module.css'
 //TODO исправить стили форм
-const FormControl = ({input, meta, child, errorclass, ...props}) => {
-    const hasError = meta.touched && meta.error;
+const FormControl = ({input, meta: {touched, error}, child, errorclass, ...props}) => {
+    const hasError = touched && error;
     return (
         <div className={s.messageWrapper}>
             <div className={hasError ? s.borderError : ""}>
                 {props.children}
             </div>
             {hasError &&
-            <span className={errorclass}>{meta.error}</span>
+            <span className={errorclass}>{error}</span>
             }
         </div>
     )
@@ -26,20 +26,6 @@ export const PostTextArea = (props) => {
     )
 }
 
-// export const PostTextArea = ({input, meta, ...props}) => {
-// const hasError = meta.touched && meta.error;
-// return (
-// <div>
-// <div>
-// <textarea className={s.post + " " + (hasError ? s.error : "")}
-//                           placeholder={props.placeholder} {...input}/>
-//             </div>
-//             {hasError &&
-//             < span className={s.errorMsg}>{meta.error}</span>
-//             }
-//         </div>
-//     )
-// }
 
 export const MessageTextArea = (props) => {
     const {input, meta, ...restProps} = props;
@@ -52,22 +38,6 @@ export const MessageTextArea = (props) => {
         </FormControl>
     )
 }
-// export const MessageTextArea = ({input, meta, ...props}) => {
-//     const hasError = meta.touched && meta.error;
-//     return (
-//         <div className={s.messageWrapper}>
-//             <div>
-//             <textarea className={s.message + " " + (hasError ? s.error : "")}
-//                       placeholder={props.placeholder} {...input}
-//             />
-//
-//             </div>
-//             {hasError &&
-//             < div className={s.errorMsgAbs}>{meta.error}</div>
-//             }
-//         </div>
-//     )
-// }
 
 export const Input = (props) => {
     const {input, meta, ...restProps} = props;
@@ -81,19 +51,6 @@ export const Input = (props) => {
     )
 }
 
-// export const Input = ({input, meta, ...props}) => {
-//     const hasError = meta.touched && meta.error;
-//     return (
-//         <div className={s.messageWrapper}>
-//             <div>
-//                 <input className={+" " + (hasError ? s.error : "")}
-//                        placeholder={props.placeholder} {...input}
-//                 />
-//
-//             </div>
-//             {hasError &&
-//             < div className={s.errorMsg}>{meta.error}</div>
-//             }
-//         </div>
-//     )
-// }
+export const CreateField = () => {
+
+}

@@ -6,7 +6,7 @@ import {maxLengthCreator, required} from "../../../utils/validators/validators";
 import {PostTextArea} from "../../comoon/FormsCntrols/FormsControls";
 
 //TODO загрузка профиле во время загрузки приложения
-const maxLength10 = maxLengthCreator(10);
+const maxLength10 = maxLengthCreator(100);
 
 const PostForm = (props) => {
     return (

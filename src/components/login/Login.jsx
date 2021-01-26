@@ -7,9 +7,9 @@ import {Redirect} from "react-router-dom";
 
 //TODO react-hook-form
 
-const LoginForm = (props) => {
+const LoginForm = ({handleSubmit, error}) => {
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <div>
                 <Field
                     type="email"
@@ -35,9 +35,9 @@ const LoginForm = (props) => {
             <div>
                 <button type={"submit"}>Log in</button>
             </div>
-            {props.error &&
+            {error &&
             <div className={s.formSummaryError}>
-                {props.error}
+                {error}
             </div>}
         </form>
     )
