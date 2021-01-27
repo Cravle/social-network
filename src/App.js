@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import {Redirect, Route, withRouter} from "react-router-dom";
+import {HashRouter, Route, withRouter} from "react-router-dom";
 import Settings from "./components/Settings/Settings";
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
@@ -10,10 +10,11 @@ import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginContainer from "./components/login/LoginContainer";
-import {connect} from "react-redux";
+import {connect, Provider} from "react-redux";
 import {compose} from "redux";
 import {initializeApp} from "./Redux/app-reducer";
 import Preloader from "./components/comoon/preloader/Preloader";
+import store from "./Redux/redux-store";
 
 
 class App extends React.Component {
@@ -69,7 +70,17 @@ let mapStateToProps = (state) => ({
 
 })
 
-export default compose(
+let AppContainer = compose(
     withRouter,
     connect(mapStateToProps, {initializeApp}))
 (App);
+
+let SocialNetworkApp = () => {
+    return <HashRouter>
+        <Provider store={store}>
+            <AppContainer/>
+        </Provider>
+    </HashRouter>
+}
+
+export default SocialNetworkApp;
