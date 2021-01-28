@@ -53,7 +53,7 @@ export default compose(
         getUserProfile,
         getUserStatus,
         updateUserStatus,
-
+    
     }),
     withRouter,
     //withAuthRedirect

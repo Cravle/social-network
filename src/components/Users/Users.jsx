@@ -10,7 +10,7 @@ let Users = (props) => {
         <div className={s.wrapper}>
             <Paginator currentPage={props.currentPage}
                        onPageChanged={props.onPageChanged}
-                       totalUsersCount={props.totalUsersCount}
+                       totalItemsCount={props.totalUsersCount}
                        pageSize={props.pageSize}
             />
             {
@@ -21,6 +21,7 @@ let Users = (props) => {
                         followingInProgress={props.followingInProgress}
                         unfollow={props.unfollow}
                         follow={props.follow}
+                        isAuth={props.isAuth}
                     />
                 )
             }

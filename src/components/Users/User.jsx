@@ -1,10 +1,9 @@
 import React from 'react'
 import s from "./Users.module.css";
-import userPhoto from "../../assets/img/user.png";
+import userPhoto from "../../assets/img/user.jpg";
 import {NavLink} from "react-router-dom";
 
-let User = ({user, followingInProgress, unfollow, follow}) => {
-
+let User = ({user, followingInProgress, unfollow, follow, isAuth}) => {
     return (
 
         <div className={s.usersWrapper}>
@@ -20,7 +19,7 @@ let User = ({user, followingInProgress, unfollow, follow}) => {
                 <div className={s.btnWrapper}>
                     {user.followed ?
                         <button
-                            disabled={followingInProgress.some(id => id === user.id)}
+                            disabled={followingInProgress.some(id => id === user.id) || !isAuth}
                             className={s.fbtn}
                             onClick={() => {
                                 unfollow(user.id);
@@ -28,7 +27,7 @@ let User = ({user, followingInProgress, unfollow, follow}) => {
                             Unfollow
                         </button> :
                         <button
-                            disabled={followingInProgress.some(id => id === user.id)}
+                            disabled={followingInProgress.some(id => id === user.id) || !isAuth}
                             className={s.fbtn}
                             onClick={() => {
 

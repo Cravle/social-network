@@ -1,3 +1,12 @@
+.paginator {
+    display: grid;
+}
+
+.content {
+    margin: 0 auto;
+
+}
+
 .pageBtn {
     color: #7a7a7b;
     background-color: #444446;

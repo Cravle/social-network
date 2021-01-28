@@ -1,14 +1,21 @@
 import React from 'react';
 import s from './FormsControls.module.css'
 //TODO исправить стили форм
-const FormControl = ({input, meta: {touched, error}, child, errorclass, ...props}) => {
+const FormControl = ({
+                         input,
+                         meta: {touched, error},
+                         child,
+                         errorclass,
+                         witherror = 0,
+                         ...props
+                     }) => {
     const hasError = touched && error;
     return (
         <div className={s.messageWrapper}>
-            <div className={hasError ? s.borderError : ""}>
+            <div className={hasError && witherror ? s.borderError : ""}>
                 {props.children}
             </div>
-            {hasError &&
+            {hasError && witherror &&
             <span className={errorclass}>{error}</span>
             }
         </div>

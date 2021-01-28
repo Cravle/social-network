@@ -2,11 +2,47 @@
     color: #7a7a7b;
     display: grid;
     margin-top: 15px;
-    grid-template-columns: 60px 10fr;
+    grid-template-columns: 75px 10fr;
+    background-color: #333336;
+    padding: 10px;
 }
 
-.wrapper img {
-    width: 50px;
-    height: 50px;
+.ava {
+    width: 65px;
+    height: 65px;
     border-radius: 50%;
+}
+
+.name {
+    padding: 0;
+    margin: 0;
+    color: #ffffff;
+}
+
+.inner {
+    display: grid;
+    grid-template-columns: 8fr 2fr;
+}
+
+.likeWrapper {
+    display: grid;
+    justify-self: end;
+    align-self: center;
+    grid-template-columns: 30px 50px;
+
+}
+
+.count {
+    align-self: center;
+    font-size: 20px;
+}
+
+.imgWrapper {
+    padding: 10px 0;
+}
+
+.like {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
 }

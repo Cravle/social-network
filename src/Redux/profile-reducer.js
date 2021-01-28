@@ -3,13 +3,14 @@ import {profileAPI, usersAPI} from "../api/api";
 const ADD_POST = 'ADD-POST',
     SET_USER_PROFILE = 'SET-USER-PROFILE',
     SET_STATUS = 'SET-STATUS',
-    DELETE_POST = 'DELETE-POST';
+    DELETE_POST = 'DELETE-POST',
+    TOGGLE_LIKE = 'TOGGLE-LIKE';
 
 let initialState = {
     posts: [
-        {id: 1, message: 'Hi, how are you?', likesCount: 11},
-        {id: 2, message: 'It\'s my first post', likesCount: 44},
-        {id: 3, message: 'It\'s my first post', likesCount: 55},
+        {id: 1, message: 'Hi, how are you?', likesCount: 11, liked: false},
+        {id: 2, message: 'It\'s my first post', likesCount: 44, liked: false},
+        {id: 3, message: 'It\'s my first post', likesCount: 55, liked: false},
     ],
 
     profile: null,
@@ -47,9 +48,23 @@ const profileReducer = (state = initialState, action) => {
         case SET_STATUS: {
             return {
                 ...state,
-                status: action.status
+                status: action.status,
             };
 
+        }
+
+        case TOGGLE_LIKE: {
+            return {
+                ...state,
+                posts: [...state.posts.map(p => {
+                    if (p.id === action.id) {
+                        p.liked ? p.likesCount-- : p.likesCount++;
+                        p.liked = !p.liked;
+
+                    }
+                    return p;
+                })]
+            }
         }
         default:
             return state;
@@ -59,7 +74,7 @@ const profileReducer = (state = initialState, action) => {
 
 }
 //AC
-export const addPostCreator = (newPostText) => ({
+export const addPost = (newPostText) => ({
     type: ADD_POST,
     newPostText
 })
@@ -78,6 +93,12 @@ export const setStatus = (status) => ({
 export const deletePost = (id) => ({
     type: DELETE_POST,
     id
+})
+
+export const toggleLike = (id, likeOrUnlike) => ({
+    type: TOGGLE_LIKE,
+    id,
+    likeOrUnlike
 })
 
 //THC

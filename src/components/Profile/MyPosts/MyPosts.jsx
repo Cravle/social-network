@@ -43,9 +43,11 @@ const MyPosts = React.memo(props => {
     let postsElements = props.posts.map(p => <Post message={p.message}
                                                    key={p.id}
                                                    likesCount={p.likesCount}
+                                                   liked={p.liked}
                                                    profile={props.profile}
+                                                   toggleLike={props.toggleLike}
+                                                   id={p.id}
     />)
-    console.log('render');
 
     let onSubmit = (formData) => {
 

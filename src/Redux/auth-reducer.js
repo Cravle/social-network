@@ -1,5 +1,6 @@
 import {authAPI} from "../api/api";
 import {stopSubmit} from "redux-form";
+import {getUserProfile} from "./profile-reducer";
 
 const SET_USER_DATA = 'social-network/auth/SET-USER-DATA';
 
@@ -35,6 +36,7 @@ export const getAuthUserData = () => async (dispatch) => {
     if (response.data.resultCode === 0) {
         let {id, login, email} = response.data.data;
         dispatch(setAuthUserData(id, email, login, true));
+        dispatch(getUserProfile(id));
     }
 
 

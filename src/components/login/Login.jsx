@@ -16,6 +16,7 @@ const LoginForm = ({handleSubmit, error}) => {
                     placeholder={"email"}
                     name={"email"}
                     component={Input}
+                    witherror={1}
                     errorclass={s.errorMsg}
                     validate={[required]}
                 />
@@ -26,6 +27,7 @@ const LoginForm = ({handleSubmit, error}) => {
                        name={"password"}
                        component={Input}
                        errorclass={s.errorMsg}
+                       witherror={1}
                        validate={[required]}
                 />
             </div>
@@ -49,7 +51,6 @@ const LoginReduxForm = reduxForm({
 
 const Login = (props) => {
     const onSubmit = (formData) => {
-        console.log(formData);
         props.postAuthLogin(formData.email, formData.password, formData.rememberMe)
     }
     if (props.isAuth) {
