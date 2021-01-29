@@ -8,38 +8,48 @@ import userPhoto from "../../../assets/img/user.jpg";
 const ProfileInfo = ({profile, status, updateUserStatus, ...props}) => {
     if (!profile) {
         return <Preloader/>
-    } else
-        return (
-            <div className={s.myPage}>
+    }
+
+    const onMainPhotoSelected = (e) => {
+        if (e.target.files.length) {
+            props.savePhoto(e.target.files[0])
+        }
+    }
+
+    return (
+        <div className={s.myPage}>
 
 
-                <div className={s.info}>
-                    <div className={s.ava}>
-                        <div className={s.ava__wrapper}>
-                            <img
-                                src={profile.photos.large || userPhoto}
-                                alt=""/>
-                        </div>
+            <div className={s.info}>
+                <div className={s.ava}>
+                    <div className={s.ava__wrapper}>
+                        <img
+                            src={profile.photos.large || userPhoto}
+                            alt=""/>
                     </div>
-                    <div className={s.description}>
-                        <h1>{profile.fullName || "Vladyslav Loboda"}</h1>
-
-                        <ProfileStatusWithHooks
-                            status={status}
-                            updateUserStatus={updateUserStatus}
-                        />
-
-                        <div>{profile.aboutMe}</div>
-                        <div>{profile.lookingForAJob ?
-                            `В поиске работы: ${profile.lookingForAJobDescription}` :
-                            "Работу не ищу"}</div>
-                        <div>social links:</div>
-
-                    </div>
+                    {props.isOwner &&
+                    <input className={s.fileInput} type={'file'} onChange={onMainPhotoSelected}/>}
 
                 </div>
+                <div className={s.description}>
+                    <h1>{profile.fullName || "Vladyslav Loboda"}</h1>
+
+                    <ProfileStatusWithHooks
+                        status={status}
+                        updateUserStatus={updateUserStatus}
+                    />
+
+                    <div>{profile.aboutMe}</div>
+                    <div>{profile.lookingForAJob ?
+                        `В поиске работы: ${profile.lookingForAJobDescription}` :
+                        "Работу не ищу"}</div>
+                    <div>social links:</div>
+
+                </div>
+
             </div>
-        )
+        </div>
+    )
 }
 
 export default ProfileInfo;

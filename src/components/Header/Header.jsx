@@ -3,7 +3,7 @@ import s from './Header.module.css';
 import {NavLink} from "react-router-dom";
 import userPhoto from "../../assets/img/user.jpg";
 
-//TODO показать автарку сверху
+
 //TODO Капча с докум
 const Header = (props) => {
     let [menu, setMenu] = useState(false);

@@ -15,7 +15,7 @@ const FormControl = ({
             <div className={hasError && witherror ? s.borderError : ""}>
                 {props.children}
             </div>
-            {hasError && witherror &&
+            {hasError && witherror === 1 &&
             <span className={errorclass}>{error}</span>
             }
         </div>
