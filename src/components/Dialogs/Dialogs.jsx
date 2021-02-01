@@ -6,6 +6,7 @@ import Message from "./Message/Message";
 import {Field, reset, reduxForm} from "redux-form";
 import {MessageTextArea} from "../comoon/FormsCntrols/FormsControls";
 import {maxLengthCreator, required} from "../../utils/validators/validators";
+import send from "../../assets/img/send.svg";
 
 const maxLength100 = maxLengthCreator(100);
 
@@ -27,7 +28,7 @@ const MessageForm = (props) => {
             <button className={s.button}>
                 <img
                     className={s.sendImg}
-                    src="/send.svg"
+                    src={send}
                     alt="send"/>
             </button>
         </form>

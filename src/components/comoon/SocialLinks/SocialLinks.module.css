@@ -1,0 +1,10 @@
+
+.socialLinks {
+    display: grid;
+    grid-template-columns: 25px 25px 25px 25px 25px 25px 25px;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+}

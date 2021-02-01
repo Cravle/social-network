@@ -3,6 +3,7 @@ import s from "./ProfileInfo.module.css";
 import Preloader from "../../comoon/preloader/Preloader";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import userPhoto from "../../../assets/img/user.jpg";
+import SocialLinks from "../../comoon/SocialLinks/SocialLinks";
 
 //TODO отобразить всю инфу с  https://social-network.samuraijs.com/api/1.0/profile/2
 const ProfileInfo = ({profile, status, updateUserStatus, ...props}) => {
@@ -15,7 +16,7 @@ const ProfileInfo = ({profile, status, updateUserStatus, ...props}) => {
             props.savePhoto(e.target.files[0])
         }
     }
-
+    
     return (
         <div className={s.myPage}>
 
@@ -32,18 +33,37 @@ const ProfileInfo = ({profile, status, updateUserStatus, ...props}) => {
 
                 </div>
                 <div className={s.description}>
-                    <h1>{profile.fullName || "Vladyslav Loboda"}</h1>
 
-                    <ProfileStatusWithHooks
-                        status={status}
-                        updateUserStatus={updateUserStatus}
-                    />
+                    <h1>{profile.fullName}</h1>
+                    <div/>
+                    <div>
+                        <ProfileStatusWithHooks
+                            status={status}
+                            updateUserStatus={updateUserStatus}
+                            isOwner={props.isOwner}
+                        />
 
-                    <div>{profile.aboutMe}</div>
-                    <div>{profile.lookingForAJob ?
-                        `В поиске работы: ${profile.lookingForAJobDescription}` :
-                        "Работу не ищу"}</div>
-                    <div>social links:</div>
+                        <div>{profile.aboutMe}</div>
+                        <div> {profile.lookingForAJob ?
+                            <div className={s.job}><b> Looking for a job</b> : yes
+                                <div>
+                                    <b>About job:</b> {profile.lookingForAJobDescription}
+                                </div>
+                            </div> :
+                            <div>
+                                <b>Looking for a job: </b>no
+                            </div>}
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3>About me:</h3>
+                        <div>My social links:</div>
+
+                        <SocialLinks
+                            profileContacts={profile ? profile.contacts : null}/>
+
+                    </div>
 
                 </div>
 

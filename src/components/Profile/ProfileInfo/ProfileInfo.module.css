@@ -1,6 +1,7 @@
 h1 {
     padding: 0;
     margin: 0;
+    line-height: 1;
 }
 
 .myPage {
@@ -56,12 +57,21 @@ h1 {
 
 .description {
     color: #fff;
-    display: block;
+    display: grid;
+    grid-template-columns: 40% 50%;
+    grid-template-rows: 35px 115px;
     background: #333336;
     padding: 10px;
+    line-height: 1.5;
+    max-height: 160px;
 }
 
 .fileInput {
     width: 180px;
 }
+
+.job {
+
+}
+
 

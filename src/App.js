@@ -16,6 +16,10 @@ import {initializeApp} from "./Redux/app-reducer";
 import Preloader from "./components/comoon/preloader/Preloader";
 import store from "./Redux/redux-store";
 
+
+//TODO лайк без авторизации
+
+
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
 

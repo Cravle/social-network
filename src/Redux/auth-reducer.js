@@ -1,6 +1,5 @@
 import {authAPI} from "../api/api";
 import {stopSubmit} from "redux-form";
-import {getUserProfile} from "./profile-reducer";
 
 const SET_USER_DATA = 'social-network/auth/SET-USER-DATA';
 

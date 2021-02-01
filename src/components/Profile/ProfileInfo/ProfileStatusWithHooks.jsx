@@ -24,16 +24,19 @@ const ProfileStatusWithHooks = (props) => {
     return (
         <div className={s.content}>
             {!editMode &&
-            <h3 onDoubleClick={activateEditMode} value={status}>
+            <h3 className={s.status} onDoubleClick={props.isOwner ? activateEditMode : () => {
+            }}
+                value={status}>
                 {status || "-----"}
             </h3>
             }
-            {editMode &&
+            {editMode && props.isOwner &&
             <input
                 onBlur={deactivateEditMode}
                 autoFocus={true}
                 onChange={onStatusChange}
                 value={status}
+                maxLength={50}
             />
             }
         </div>
