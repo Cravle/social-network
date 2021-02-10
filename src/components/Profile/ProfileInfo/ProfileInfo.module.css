@@ -58,12 +58,13 @@ h1 {
 .description {
     color: #fff;
     display: grid;
-    grid-template-columns: 40% 50%;
-    grid-template-rows: 35px 115px;
+    grid-template-columns: 40% 50% 10%;
+    grid-template-rows: 35px 110px;
     background: #333336;
     padding: 10px;
     line-height: 1.5;
     max-height: 160px;
+
 }
 
 .fileInput {
@@ -71,6 +72,34 @@ h1 {
 }
 
 .job {
+
+}
+
+.edit {
+    margin-left: auto;
+}
+
+.editBtn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 18px;
+    opacity: 0.5;
+    transition: opacity .1s linear;
+    color: #FFF;
+    outline: none;
+
+}
+
+.editBtn:hover {
+    opacity: 0.65;
+}
+
+.socialInputs {
+
+}
+
+.label {
 
 }
 

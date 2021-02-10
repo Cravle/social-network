@@ -7,6 +7,7 @@ import userPhoto from "../../assets/img/user.jpg";
 //TODO Капча с докум
 const Header = (props) => {
     let [menu, setMenu] = useState(false);
+    
 
     return (
         <header className={s.header}>

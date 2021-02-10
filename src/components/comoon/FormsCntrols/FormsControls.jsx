@@ -58,6 +58,15 @@ export const Input = (props) => {
     )
 }
 
-export const CreateField = () => {
+export const CreateField = (props) => {
+    const {input, meta, ...restProps} = props;
 
+    return (
+        <FormControl {...props}>
+            <input
+                placeholder={props.placeholder}
+                {...input} {...restProps}/>
+            />
+        </FormControl>
+    )
 }

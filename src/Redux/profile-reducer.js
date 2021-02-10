@@ -2,6 +2,7 @@ import {profileAPI, usersAPI} from "../api/api";
 
 const ADD_POST = 'ADD-POST',
     SET_USER_PROFILE = 'SET-USER-PROFILE',
+    SET_OWNER = 'SET-OWNER',
     SET_STATUS = 'SET-STATUS',
     DELETE_POST = 'DELETE-POST',
     TOGGLE_LIKE = 'TOGGLE-LIKE',
@@ -15,6 +16,7 @@ let initialState = {
     ],
 
     profile: null,
+    owner: null,
     status: "",
 };
 
@@ -45,6 +47,12 @@ const profileReducer = (state = initialState, action) => {
                 profile: action.profile
             };
 
+        }
+        case SET_OWNER: {
+            return {
+                ...state,
+                owner: action.profile
+            }
         }
         case SAVE_PHOTO_SUCCESS: {
             return {
@@ -93,6 +101,11 @@ export const setUserProfile = (profile) => ({
     profile
 })
 
+export const setIsOwner = (profile) => ({
+    type: SET_OWNER,
+    profile
+})
+
 export const setStatus = (status) => ({
     type: SET_STATUS,
     status
@@ -108,6 +121,7 @@ export const savePhotoSuccess = (photos) => ({
     photos
 })
 
+
 export const toggleLike = (id, likeOrUnlike) => ({
     type: TOGGLE_LIKE,
     id,
@@ -118,8 +132,6 @@ export const toggleLike = (id, likeOrUnlike) => ({
 export const getUserProfile = (userId) => async (dispatch) => {
     let response = await usersAPI.getProfile(userId);
     dispatch(setUserProfile(response.data));
-
-
 }
 export const getUserStatus = (userId) => async (dispatch) => {
     let response = await profileAPI.getStatus(userId);
@@ -137,6 +149,14 @@ export const savePhoto = (file) => async (dispatch) => {
     let response = await profileAPI.savePhoto(file)
     if (response.data.resultCode === 0) {
         dispatch(savePhotoSuccess(response.data.data.photos));
+    }
+}
+
+export const saveProfile = (profile, id) => async (dispatch) => {
+    let response = await profileAPI.saveProfile(profile);
+
+    if (response.data.resultCode === 0) {
+        dispatch(getUserProfile(id))
     }
 }
 
