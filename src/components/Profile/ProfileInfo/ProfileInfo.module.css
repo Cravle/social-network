@@ -95,6 +95,29 @@ h1 {
     opacity: 0.65;
 }
 
+.descriptionEdit {
+    color: #fff;
+    display: grid;
+    grid-template-columns: 40% 50% 10%;
+    grid-template-rows: 30px 190px;
+    background: #333336;
+    padding: 10px;
+    line-height: 1.5;
+    max-height: 240px;
+
+}
+
+.mySocials h4 {
+    padding: 0;
+    margin: 0;
+
+}
+
+.social {
+    display: grid;
+    grid-template-columns: 80px 160px;
+}
+
 .socialInputs {
 
 }

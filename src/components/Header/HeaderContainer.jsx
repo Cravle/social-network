@@ -3,8 +3,6 @@ import Header from "./Header";
 import {connect} from "react-redux";
 import {deleteAuthLogin} from "../../Redux/auth-reducer";
 import {compose} from "redux";
-import {withRouter} from "react-router-dom";
-import Profile from "../Profile/Profile";
 
 class HeaderContainer extends React.Component {
 

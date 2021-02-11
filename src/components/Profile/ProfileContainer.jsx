@@ -3,7 +3,7 @@ import Profile from "./Profile";
 import {connect} from "react-redux";
 import {
     getUserProfile,
-    getUserStatus, savePhoto, saveProfile, setIsOwner,
+    getUserStatus, savePhoto, saveProfile,
     updateUserStatus
 } from "../../Redux/profile-reducer";
 import {withRouter} from "react-router";
@@ -72,7 +72,7 @@ export default compose(
         updateUserStatus,
         savePhoto,
         saveProfile,
-        
+
 
     }),
     withRouter,

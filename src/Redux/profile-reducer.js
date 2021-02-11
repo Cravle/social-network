@@ -1,4 +1,4 @@
-import {profileAPI, usersAPI} from "../api/api";
+import {profileAPI} from "../api/api";
 
 const ADD_POST = 'ADD-POST',
     SET_USER_PROFILE = 'SET-USER-PROFILE',
@@ -130,7 +130,7 @@ export const toggleLike = (id, likeOrUnlike) => ({
 
 //THC
 export const getUserProfile = (userId) => async (dispatch) => {
-    let response = await usersAPI.getProfile(userId);
+    let response = await profileAPI.getProfile(userId);
     dispatch(setUserProfile(response.data));
 }
 export const getUserStatus = (userId) => async (dispatch) => {
@@ -154,8 +154,8 @@ export const savePhoto = (file) => async (dispatch) => {
 
 export const saveProfile = (profile, id) => async (dispatch) => {
     let response = await profileAPI.saveProfile(profile);
-
     if (response.data.resultCode === 0) {
+
         dispatch(getUserProfile(id))
     }
 }

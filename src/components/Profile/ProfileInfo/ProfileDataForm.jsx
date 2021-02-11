@@ -3,16 +3,18 @@ import {useForm} from "react-hook-form";
 import React from 'react';
 
 
-const InputBlock = ({labelName, inputName = labelName, register, type = 'text'}) => {
+const InputBlock = ({
+                        labelName, inputName = labelName, register, placeholder, type = 'text'
+                    }) => {
 
     return (
-        <div>
+        <div className={s.social}>
             <label className={s.label}
                    htmlFor={labelName}>{labelName}:</label>
             {type === 'checkbox' ?
                 <input type={type} name={inputName}
                        ref={register}/> :
-                <input type={type} name={inputName} ref={register}/>
+                <input type={type} name={inputName} placeholder={placeholder} ref={register}/>
             }
         </div>
     )
@@ -22,19 +24,32 @@ const ProfileDataForm = ({outFromEditMode, saveProfile, profile}) => {
 
     const {
         register,
-
+        errors,
         handleSubmit
     } = useForm({defaultValues: {...profile}},)
 
-    const onSubmit = data => {
+    console.log(errors)
+
+    const mySubmit = async (e) => {
+        e.preventDefault();
+        await onSubmit();
+
+
+        handleSubmit(() => {
+        });
+    }
+
+    const onSubmit = async (data) => {
+
         console.log(data);
-        saveProfile(data, profile.userId);
-        outFromEditMode();
+        saveProfile(data, profile.userId).then(() => {
+            outFromEditMode();
+
+        })
     };
     return (
 
-        <form name='about' className={s.description} onSubmit={handleSubmit(onSubmit)}>
-
+        <form name='about' className={s.descriptionEdit} onSubmit={handleSubmit(onSubmit)}>
             <div>
                 <InputBlock labelName={'Full Name'}
                             inputName={'fullName'} register={register}/>
@@ -51,8 +66,8 @@ const ProfileDataForm = ({outFromEditMode, saveProfile, profile}) => {
                             inputName={'aboutMe'} register={register}/>
 
             </div>
-            <div>
-                My socials :
+            <div className={s.mySocials}>
+                <h4>My socials</h4>
 
             </div>
 
@@ -63,21 +78,37 @@ const ProfileDataForm = ({outFromEditMode, saveProfile, profile}) => {
             </div>
 
             <div/>
-            {/*<div className={s.socialsInputs}>*/}
+            <div className={s.socialsInputs}>
 
+                <InputBlock labelName={'facebook'}
+                            inputName={'contacts.facebook'}
+                            placeholder={'website.com'}
+                            register={register}/>
+                <InputBlock labelName={'github'}
+                            inputName={'contacts.github'}
+                            placeholder={'website.com'}
+                            register={register}/>
+                <InputBlock labelName={'instagram'}
+                            inputName={'contacts.instagram'}
+                            placeholder={'website.com'}
+                            register={register}/>
+                <InputBlock labelName={'twitter'}
+                            inputName={'contacts.twitter'}
+                            placeholder={'website.com'}
+                            register={register}/>
+                <InputBlock labelName={'vk'} inputName={'contacts.vk'}
+                            placeholder={'website.com'}
+                            register={register}/>
+                <InputBlock labelName={'website'}
+                            inputName={'contacts.website'}
+                            placeholder={'website.com'}
+                            register={register}/>
+                <InputBlock labelName={'youtube'}
+                            inputName={'contacts.youtube'}
+                            placeholder={'website.com'}
+                            register={register}/>
 
-            {/*    <InputBlock labelName={'facebook'} inputName={['contacts']['facebook']}*/}
-            {/*                register={register}/>*/}
-            {/*    <InputBlock labelName={'github'} inputName={['contacts']['github']}*/}
-            {/*                register={register}/>*/}
-            {/*    <InputBlock labelName={'instagram'} inputName={['contacts']['github']}*/}
-            {/*                register={register}/>*/}
-            {/*    <InputBlock labelName={'twitter'} register={register}/>*/}
-            {/*    <InputBlock labelName={'vk'} register={register}/>*/}
-            {/*    <InputBlock labelName={'website'} register={register}/>*/}
-            {/*    <InputBlock labelName={'youtube'} register={register}/>*/}
-
-            {/*</div>*/}
+            </div>
 
 
         </form>

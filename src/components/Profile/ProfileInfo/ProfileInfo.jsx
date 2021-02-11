@@ -18,7 +18,7 @@ const ProfileData = ({status, updateUserStatus, profile, isOwner, goToEditMode})
                 <button onClick={() => goToEditMode()} className={s.editBtn}>Edit</button>
                 }
             </div>
-            
+
             <div>
                 <ProfileStatusWithHooks
                     status={status}
@@ -39,7 +39,6 @@ const ProfileData = ({status, updateUserStatus, profile, isOwner, goToEditMode})
             </div>
 
             <div>
-                <h3>About me:</h3>
                 <div>My social links:</div>
 
                 <SocialLinks
