@@ -30,14 +30,14 @@ const ProfileDataForm = ({outFromEditMode, saveProfile, profile}) => {
 
     console.log(errors)
 
-    const mySubmit = async (e) => {
-        e.preventDefault();
-        await onSubmit();
-
-
-        handleSubmit(() => {
-        });
-    }
+    // const mySubmit = async (e) => {
+    //     e.preventDefault();
+    //     await onSubmit();
+    //
+    //
+    //     handleSubmit(() => {
+    //     });
+    // }
 
     const onSubmit = async (data) => {
 

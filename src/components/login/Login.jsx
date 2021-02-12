@@ -7,7 +7,7 @@ import {Redirect} from "react-router-dom";
 
 //TODO react-hook-form
 
-const LoginForm = ({handleSubmit, error}) => {
+const LoginForm = ({handleSubmit, error, ...props}) => {
     return (
         <form onSubmit={handleSubmit}>
             <div>
@@ -34,6 +34,22 @@ const LoginForm = ({handleSubmit, error}) => {
             <div>
                 <Field type="checkbox" name={"rememberMe"} component={"input"}/> remember me
             </div>
+            {props.withCaptcha &&
+            <div>
+                <img
+                    src={props.captchaUrl}
+                    alt="captcha"/>
+                <Field
+                    type="text"
+                    placeholder={""}
+                    name={"captcha"}
+                    component={Input}
+                    witherror={1}
+                    errorclass={s.errorMsg}
+                    validate={[required]}
+                />
+            </div>
+            }
             <div>
                 <button type={"submit"}>Log in</button>
             </div>
@@ -51,14 +67,19 @@ const LoginReduxForm = reduxForm({
 
 const Login = (props) => {
     const onSubmit = (formData) => {
-        props.postAuthLogin(formData.email, formData.password, formData.rememberMe)
+        props.postAuthLogin(formData.email, formData.password, formData.rememberMe, formData.captcha);
+        console.log(formData);
     }
     if (props.isAuth) {
         return <Redirect to={'/profile'}/>
     }
     return <div className={s.wrapper}>
         <h1>Login</h1>
-        <LoginReduxForm onSubmit={onSubmit}/>
+        <LoginReduxForm
+            withCaptcha={props.withCaptcha}
+            onSubmit={onSubmit}
+            captchaUrl={props.captchaUrl}
+        />
     </div>
 }
 
