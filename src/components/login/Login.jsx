@@ -34,14 +34,14 @@ const LoginForm = ({handleSubmit, error, ...props}) => {
             <div>
                 <Field type="checkbox" name={"rememberMe"} component={"input"}/> remember me
             </div>
-            {props.withCaptcha &&
+            {props.captchaUrl &&
             <div>
                 <img
                     src={props.captchaUrl}
                     alt="captcha"/>
                 <Field
                     type="text"
-                    placeholder={""}
+                    placeholder={"Symbols from image"}
                     name={"captcha"}
                     component={Input}
                     witherror={1}
@@ -76,7 +76,6 @@ const Login = (props) => {
     return <div className={s.wrapper}>
         <h1>Login</h1>
         <LoginReduxForm
-            withCaptcha={props.withCaptcha}
             onSubmit={onSubmit}
             captchaUrl={props.captchaUrl}
         />

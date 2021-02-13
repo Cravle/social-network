@@ -14,7 +14,6 @@ class LoginContainer extends React.Component {
                 isAuth={this.props.isAuth}
                 postAuthLogin={this.props.postAuthLogin}
                 getCaptcha={this.props.getCaptcha}
-                withCaptcha={this.props.withCaptcha}
                 captchaUrl={this.props.captchaUrl}
             />
         )
@@ -23,7 +22,6 @@ class LoginContainer extends React.Component {
 
 const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth,
-    withCaptcha: state.auth.withCaptcha,
     captchaUrl: state.auth.captchaUrl
 })
 

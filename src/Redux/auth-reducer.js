@@ -2,14 +2,13 @@ import {authAPI, securityAPI} from "../api/api";
 import {stopSubmit} from "redux-form";
 
 const SET_USER_DATA = 'social-network/auth/SET-USER-DATA',
-    SET_CAPTCHA = 'SET-CAPTCHA';
+    SET_CAPTCHA = 'social-network/auth/SET-CAPTCHA';
 
 let initialState = {
     userId: null,
     email: null,
     login: null,
     isAuth: false,
-    withCaptcha: false,
     captchaUrl: null
 };
 
@@ -24,7 +23,6 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 captchaUrl: action.captchaUrl,
-                withCaptcha: true
             }
         default:
             return state;
@@ -60,14 +58,10 @@ export const postAuthLogin = (email, password, rememberMe, captcha = '') => asyn
     let response = await authAPI.login(email, password, rememberMe, captcha);
     if (response.data.resultCode === 0) {
         dispatch(getAuthUserData());
-    } else if (response.data.resultCode === 10) {
-        let message2 = response.data.messages.length > 0 ? response.data.messages[0] : "Some error";
-        dispatch(stopSubmit("login", {
-            _error: `${message2}`
-        }));
-        let response2 = await securityAPI.captcha();
-        dispatch(setCaptcha(response2.data.url));
     } else {
+        if (response.data.resultCode === 10)
+            dispatch(getCaptcha());
+
         let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error";
         dispatch(stopSubmit("login", {
             _error: `${message}`
