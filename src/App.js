@@ -1,13 +1,11 @@
 import React, {Suspense} from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import {HashRouter, Redirect, Route, withRouter} from "react-router-dom";
+import {BrowserRouter, /*HashRouter,*/ Redirect, Route, withRouter} from "react-router-dom";
 import Settings from "./components/Settings/Settings";
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
-//import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
-//import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginContainer from "./components/login/LoginContainer";
 import {connect, Provider} from "react-redux";
@@ -25,11 +23,20 @@ const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileCo
 
 
 class App extends React.Component {
+    catchAllUnhandledErrors = (promiseRejectionEvent) => {
+        alert("Some error occured");
+        console.error(promiseRejectionEvent);
+    }
+
 
     componentDidMount() {
         this.props.initializeApp();
+        window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors);
     }
 
+    componentWillUnmount() {
+        window.removeEventListener('unhandledrejection', this.catchAllUnhandledErrors);
+    }
 
     render() {
         if (!this.props.initialized) {
@@ -39,11 +46,13 @@ class App extends React.Component {
             <>
 
                 <div className="app-wrapper">
+
+
+                    <HeaderContainer/>
+                    <Navbar/>
                     <Route exact path={"/"}>
                         <Redirect to={"/profile"}/>
                     </Route>
-                    <HeaderContainer/>
-                    <Navbar/>
                     <div className="app-wrapper-content">
                         <Suspense fallback={<Preloader/>}>
                             <Route path="/profile/:userId?"
@@ -70,8 +79,10 @@ class App extends React.Component {
                         <Route path="/login"
                                render={() => <LoginContainer/>}
                         />
+                        {/*<Route path="*"*/}
+                        {/*       render={() => <div>404 NOT FOUND</div>}*/}
+                        {/*/>*/}
                     </div>
-
                 </div>
             </>
         );
@@ -89,11 +100,11 @@ let AppContainer = compose(
 (App);
 
 let SocialNetworkApp = () => {
-    return <HashRouter /*basename={process.env.PUBLIC_URL}*/>
+    return <BrowserRouter /*basename={process.env.PUBLIC_URL}*/>
         <Provider store={store}>
             <AppContainer/>
         </Provider>
-    </HashRouter>
+    </BrowserRouter>
 }
 
 export default SocialNetworkApp;
