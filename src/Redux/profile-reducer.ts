@@ -8,7 +8,21 @@ const ADD_POST = 'ADD-POST',
     TOGGLE_LIKE = 'TOGGLE-LIKE',
     SAVE_PHOTO_SUCCESS = 'SAVE-PHOTO-SUCCESS';
 
-let initialState = {
+type postType = {
+    id: number,
+    message: string
+    likesCount: number
+    liked: boolean
+}
+
+type initialStateType = {
+    posts: Array<postType>
+    profile: object | null,
+    owner: object | null,
+    status: string
+}
+
+let initialState: initialStateType = {
     posts: [
         {id: 1, message: 'Hi, how are you?', likesCount: 11, liked: false},
         {id: 2, message: 'It\'s my first post', likesCount: 44, liked: false},
@@ -20,13 +34,15 @@ let initialState = {
     status: "",
 };
 
-const profileReducer = (state = initialState, action) => {
+
+const profileReducer = (state = initialState, action: any): initialStateType => {
     switch (action.type) {
         case ADD_POST: {
-            let newPost = {
+            let newPost: postType = {
                 id: state.posts[state.posts.length - 1].id + 1,
                 message: action.newPostText,
                 likesCount: 0,
+                liked: false
             };
 
             return {
@@ -89,34 +105,43 @@ const profileReducer = (state = initialState, action) => {
 
 
 }
+
+type addPostActionType = {
+    type: typeof ADD_POST,
+    newPostText: string
+}
 //AC
-export const addPost = (newPostText) => ({
+export const addPost = (newPostText: string): addPostActionType => ({
     type: ADD_POST,
     newPostText
 })
 
+type setUsetProfileType = {
+    type: typeof SET_USER_PROFILE
+    profile: any
+}
 
-export const setUserProfile = (profile) => ({
+export const setUserProfile = (profile: any): setUsetProfileType => ({
     type: SET_USER_PROFILE,
     profile
 })
 
-export const setIsOwner = (profile) => ({
+export const setIsOwner = (profile: any) => ({
     type: SET_OWNER,
     profile
 })
 
-export const setStatus = (status) => ({
+export const setStatus = (status: string) => ({
     type: SET_STATUS,
     status
 })
 
-export const deletePost = (id) => ({
+export const deletePost = (id: number) => ({
     type: DELETE_POST,
     id
 })
 
-export const savePhotoSuccess = (photos) => ({
+export const savePhotoSuccess = (photos: any) => ({
     type: SAVE_PHOTO_SUCCESS,
     photos
 })

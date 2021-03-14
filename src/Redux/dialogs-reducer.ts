@@ -1,6 +1,25 @@
+import {Message} from "react-hook-form";
+
 const SEND_MESSAGE = 'ADD-MESSAGE';
 
-let initialState = {
+type MessageType = {
+    id: number
+    message: string
+    avaUrl: string
+}
+
+type DialogsType = {
+    id: number
+    name: string
+    avaUrl: string
+}
+
+type StateType = {
+    dialogs: Array<DialogsType>
+    messages: Array<MessageType>
+}
+
+let initialState: StateType = {
     dialogs:
         [
             {
@@ -50,7 +69,8 @@ let initialState = {
 
 };
 
-const dialogsReducer = (state = initialState, action) => {
+
+const dialogsReducer = (state = initialState, action: any): StateType => {
 
     switch (action.type) {
         case SEND_MESSAGE: {
@@ -67,14 +87,20 @@ const dialogsReducer = (state = initialState, action) => {
 
 
         }
-        
+
         default:
             return state;
     }
 
 
 }
-export const addMessageCreator = (newMessage) => ({
+
+type addMessageCreatorAction = {
+    type: typeof SEND_MESSAGE,
+    newMessage: string
+}
+
+export const addMessageCreator = (newMessage: string): addMessageCreatorAction => ({
     type: SEND_MESSAGE,
     newMessage
 })
