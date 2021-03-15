@@ -1,7 +1,7 @@
 import React, {Suspense} from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import {BrowserRouter, /*HashRouter,*/ Redirect, Route, withRouter} from "react-router-dom";
+import {BrowserRouter, HashRouter, Redirect, Route, withRouter} from "react-router-dom";
 import Settings from "./components/Settings/Settings";
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
@@ -100,11 +100,11 @@ let AppContainer = compose(
 (App);
 
 let SocialNetworkApp = () => {
-    return <BrowserRouter /*basename={process.env.PUBLIC_URL}*/>
+    return <HashRouter basename={process.env.PUBLIC_URL}>
         <Provider store={store}>
             <AppContainer/>
         </Provider>
-    </BrowserRouter>
+    </HashRouter>
 }
 
 export default SocialNetworkApp;
