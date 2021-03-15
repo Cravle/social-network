@@ -1,5 +1,8 @@
 # Social Network
 
+This is my biggest React/Redux project, where I test some technologies. The project implies a
+social-network with a full-fledged messenger, but there is still a lot to be done.
+
 You can test things from ___What is done___ block.
 
 [project on ghpage](http://cravle.github.io/social-network)
@@ -17,7 +20,7 @@ password: free
 - Change profile info
 - Change profile photo
 - Change profile status
-- Pagination
+- Pagination (find users)
 - Follow/Unfollow on find user page
 
 # What can be done
