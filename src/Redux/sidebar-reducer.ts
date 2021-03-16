@@ -1,3 +1,10 @@
+type FriendsType = {
+    avaUrl: string,
+    name: string,
+    id: number,
+}
+
+
 let initialState = {
     friends: [
         {
@@ -10,10 +17,12 @@ let initialState = {
             name: "Vitalya",
             id: 2,
         }
-    ]
+    ] as Array<FriendsType>
 };
 
-const sidebarReducer = (state = initialState, action: any) => {
+type initialStateType = typeof initialState
+
+const sidebarReducer = (state = initialState, action: any): initialStateType => {
 
 
     return state;

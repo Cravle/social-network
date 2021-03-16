@@ -13,13 +13,14 @@ type DialogsType = {
     name: string
     avaUrl: string
 }
+//
+// type initialStateType = {
+//     dialogs: Array<DialogsType>
+//     messages: Array<MessageType>
+// }
 
-type StateType = {
-    dialogs: Array<DialogsType>
-    messages: Array<MessageType>
-}
 
-let initialState: StateType = {
+let initialState = {
     dialogs:
         [
             {
@@ -42,7 +43,7 @@ let initialState: StateType = {
                 name: 'Den',
                 avaUrl: 'https://steamuserimages-a.akamaihd.net/ugc/179412883250505688/55C716B686C3D74A20BBCB73D83EF8C21F1EBBC9/',
             },
-        ],
+        ] as Array<DialogsType>,
     messages: [
         {
             id: 1,
@@ -65,12 +66,14 @@ let initialState: StateType = {
             message: 'Yo',
             avaUrl: 'https://sun1-19.userapi.com/c846417/v846417031/17ee5a/kuSfbkTPN7A.jpg',
         },
-    ],
+    ] as Array<MessageType>,
 
 };
 
+export type initialStateType = typeof initialState
 
-const dialogsReducer = (state = initialState, action: any): StateType => {
+
+const dialogsReducer = (state = initialState, action: any): initialStateType => {
 
     switch (action.type) {
         case SEND_MESSAGE: {
@@ -82,7 +85,6 @@ const dialogsReducer = (state = initialState, action: any): StateType => {
             return {
                 ...state,
                 messages: [...state.messages, newMessageObj],
-
             }
 
 
@@ -95,12 +97,12 @@ const dialogsReducer = (state = initialState, action: any): StateType => {
 
 }
 
-type addMessageCreatorAction = {
+type addMessageCreatorActionType = {
     type: typeof SEND_MESSAGE,
     newMessage: string
 }
 
-export const addMessageCreator = (newMessage: string): addMessageCreatorAction => ({
+export const addMessageCreator = (newMessage: string): addMessageCreatorActionType => ({
     type: SEND_MESSAGE,
     newMessage
 })

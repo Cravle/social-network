@@ -65,7 +65,7 @@ export const CreateField = (props) => {
         <FormControl {...props}>
             <input
                 placeholder={props.placeholder}
-                {...input} {...restProps}/>
+                {...input} {...restProps}
             />
         </FormControl>
     )

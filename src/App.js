@@ -15,7 +15,7 @@ import Preloader from "./components/comoon/preloader/Preloader";
 import store from "./Redux/redux-store";
 
 
-//TODO лайк без авторизации
+//TODO ts components
 
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
