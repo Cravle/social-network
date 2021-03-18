@@ -1,7 +1,7 @@
 import React, {Suspense} from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import {BrowserRouter, HashRouter, Redirect, Route, withRouter} from "react-router-dom";
+import {/*BrowserRouter*/ HashRouter, Redirect, Route, withRouter} from "react-router-dom";
 import Settings from "./components/Settings/Settings";
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
@@ -58,7 +58,7 @@ class App extends React.Component {
                             <Route path="/profile/:userId?"
                                    render={() => <ProfileContainer/>}
                             />
-                            <Route path="/dialogs"
+                            <Route path="/dialogs/:chatId?"
                                    render={() => <DialogsContainer/>}
                             />
                         </Suspense>

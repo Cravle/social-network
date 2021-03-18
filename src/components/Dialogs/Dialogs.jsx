@@ -1,12 +1,13 @@
 import React from 'react';
 import s from './Dialogs.module.css'
-import {Redirect} from "react-router-dom";
+import {Redirect, Route} from "react-router-dom";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {Field, reset, reduxForm} from "redux-form";
 import {MessageTextArea} from "../comoon/FormsCntrols/FormsControls";
 import {maxLengthCreator, required} from "../../utils/validators/validators";
 import send from "../../assets/img/send.svg";
+import user from "../../assets/img/user.jpg"
 
 const maxLength100 = maxLengthCreator(100);
 
@@ -42,21 +43,53 @@ const MessageReduxForm = reduxForm({
     onSubmitSuccess: afterSubmit,
 })(MessageForm)
 
-//TODO Сообщение от меня в одном углу, от собеседника - в другом
+
 const Dialogs = (props) => {
+    const [isChatSelected, setIsChatSelected] = React.useState(!!props.match.params.chatId);
+    const [selectedChat, setSelectedChat] = React.useState(props.match.params.chatId);
+    const [isFromOwner, setIsFromOwner] = React.useState(false);
+
+    const chatUser = props.dialogs[selectedChat - 1];
+
+    const afterSelectedChat = () => {
+        setIsChatSelected(true);
+    }
+
+    React.useEffect(() => {
+        setIsChatSelected(!!props.match.params.chatId)
+        setSelectedChat(props.match.params.chatId)
+    }, [props.match.params.chatId])
+
+    React.useEffect(() => {
+        return () => {
+            setIsFromOwner(false);
+        }
+    }, [])
+
 
     let dialogsElements = props.dialogs.map(d => <DialogItem id={d.id}
                                                              key={d.id}
                                                              name={d.name}
-                                                             avaUrl={d.avaUrl}/>,);
+                                                             avaUrl={d.avaUrl}
+                                                             afterSelectedChat={afterSelectedChat}
+    />,);
+
     let messagesElements = props.messages.map(m => <Message message={m.message}
                                                             key={m.id}
-                                                            avaUrl={m.avaUrl}/>);
+                                                            chatId={selectedChat}
+                                                            avaUrl={chatUser?.avaUrl}
+                                                            ownerAva={m.avaUrl}
+                                                            name={chatUser?.name}
+                                                            fromOwner={m.fromOwner}
+                                                            ownerName={m.name}
+                                                            isFromOwner={isFromOwner}
+
+    />);
 
 
     let onSendMessageClick = (formData) => {
-        props.sendMessage(formData.message);
-
+        setIsFromOwner(true);
+        props.sendMessage(formData.message, props.owner.fullName, props.owner.photos.small || user);
     }
 
 
@@ -68,13 +101,21 @@ const Dialogs = (props) => {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-
                 {dialogsElements}
             </div>
-            <div className={s.messagesWrapper}>
+            {!isChatSelected && <div className={
+                s.messagesWrapper}>
+                <div className={s.selectUser}>
+                    Select a chat to start messaging
+
+                </div>
+            </div>
+            }
+            <Route path="/dialogs/:chatId" render={() => <div className={s.messagesWrapper}>
                 {messagesElements}
                 <MessageReduxForm onSubmit={onSendMessageClick}/>
-            </div>
+            </div>}/>
+
 
         </div>
     )

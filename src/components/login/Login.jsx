@@ -68,7 +68,6 @@ const LoginReduxForm = reduxForm({
 const Login = (props) => {
     const onSubmit = (formData) => {
         props.postAuthLogin(formData.email, formData.password, formData.rememberMe, formData.captcha);
-        console.log(formData);
     }
     if (props.isAuth) {
         return <Redirect to={'/profile'}/>

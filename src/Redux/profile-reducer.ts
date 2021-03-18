@@ -115,12 +115,12 @@ export const setUserProfile = (profile: ProfileType): setUserProfileType => ({
     profile
 })
 
-type setIsOwnerActionType = {
+type setOwnerActionType = {
     type: typeof SET_OWNER
     profile: ProfileType
 }
 
-export const setIsOwner = (profile: ProfileType): setIsOwnerActionType => ({
+export const setOwner = (profile: ProfileType): setOwnerActionType => ({
     type: SET_OWNER,
     profile
 })
@@ -167,9 +167,11 @@ export const toggleLike = (id: number, likeOrUnlike: boolean): ToggleLikeActionT
 })
 
 //THC
-export const getUserProfile = (userId: number) => async (dispatch: any) => {
+export const getUserProfile = (userId: number, userOrOwner: boolean = false) => async (dispatch: any) => {
     let response = await profileAPI.getProfile(userId);
-    dispatch(setUserProfile(response.data));
+    userOrOwner ?
+        dispatch(setOwner(response.data)) :
+        dispatch(setUserProfile(response.data));
 }
 export const getUserStatus = (userId: number) => async (dispatch: any) => {
     let response = await profileAPI.getStatus(userId);

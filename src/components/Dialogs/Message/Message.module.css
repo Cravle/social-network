@@ -2,18 +2,32 @@
     padding: 10px;
 }
 
+.messageFromOwner {
+    display: grid;
+    grid-template-columns: 200px 70px;
+    grid-template-rows:  2fr;
+    margin-bottom: 10px;
+    justify-self: right;
+    text-align: right;
+}
+
 .messageWrapper {
+    margin-left: 10px;
     display: grid;
     grid-template-columns: 70px 200px;
     grid-template-rows:  2fr;
     margin-bottom: 10px;
 }
 
+.messageInner {
+    margin-right: 10px;
+}
 
 .message {
     color: #fff;
     align-self: center;
 }
+
 
 .ava {
     width: 60px;

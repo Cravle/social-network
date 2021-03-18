@@ -19,7 +19,7 @@ const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth,
     login: state.auth.login,
     profile: state.profilePage.profile,
-    isOwner: state.profilePage.isOwner
+    owner: state.profilePage.owner,
 })
 
 

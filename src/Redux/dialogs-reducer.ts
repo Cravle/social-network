@@ -1,17 +1,20 @@
-import {Message} from "react-hook-form";
+// import {Message} from "react-hook-form";
 
 const SEND_MESSAGE = 'ADD-MESSAGE';
 
-type MessageType = {
-    id: number
-    message: string
-    avaUrl: string
-}
 
 type DialogsType = {
     id: number
     name: string
     avaUrl: string
+}
+
+type MessageType = {
+    id: number
+    message: string
+    name: string
+    avaUrl: string
+    fromOwner: boolean
 }
 //
 // type initialStateType = {
@@ -27,6 +30,7 @@ let initialState = {
                 id: 1,
                 name: 'Vitalya',
                 avaUrl: 'https://sun1-19.userapi.com/c846417/v846417031/17ee5a/kuSfbkTPN7A.jpg',
+
             },
             {
                 id: 2,
@@ -48,23 +52,34 @@ let initialState = {
         {
             id: 1,
             message: 'Hi',
-
+            name: "",
             avaUrl: 'https://sun1-19.userapi.com/c846417/v846417031/17ee5a/kuSfbkTPN7A.jpg',
+            fromOwner: false,
+
         },
         {
             id: 2,
             message: 'How is your web-site?',
+            name: "",
             avaUrl: 'https://sun1-19.userapi.com/c846417/v846417031/17ee5a/kuSfbkTPN7A.jpg',
+            fromOwner: false,
+
         },
         {
             id: 3,
             message: 'Yo',
+            name: "",
             avaUrl: 'https://sun1-19.userapi.com/c846417/v846417031/17ee5a/kuSfbkTPN7A.jpg',
+            fromOwner: false,
+
         },
         {
             id: 4,
             message: 'Yo',
+            name: "",
             avaUrl: 'https://sun1-19.userapi.com/c846417/v846417031/17ee5a/kuSfbkTPN7A.jpg',
+            fromOwner: false,
+
         },
     ] as Array<MessageType>,
 
@@ -80,7 +95,9 @@ const dialogsReducer = (state = initialState, action: any): initialStateType => 
             let newMessageObj = {
                 id: state.messages[state.messages.length - 1].id + 1,
                 message: action.newMessage,
-                avaUrl: 'https://otvet.imgsmail.ru/download/201890154_cc41733ab1966f78f7c3923f8988db3e_800.jpg',
+                name: action.name,
+                avaUrl: action.avaUrl,
+                fromOwner: true
             }
             return {
                 ...state,
@@ -99,12 +116,17 @@ const dialogsReducer = (state = initialState, action: any): initialStateType => 
 
 type addMessageCreatorActionType = {
     type: typeof SEND_MESSAGE,
-    newMessage: string
+    newMessage: string,
+    name: string,
+    avaUrl: string
+
 }
 
-export const addMessageCreator = (newMessage: string): addMessageCreatorActionType => ({
+export const addMessageCreator = (newMessage: string, name: string, avaUrl: string): addMessageCreatorActionType => ({
     type: SEND_MESSAGE,
-    newMessage
+    newMessage,
+    name,
+    avaUrl
 })
 
 

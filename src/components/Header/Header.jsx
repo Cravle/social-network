@@ -7,7 +7,7 @@ import userPhoto from "../../assets/img/user.jpg";
 //TODO Капча с докум
 const Header = (props) => {
     let [menu, setMenu] = useState(false);
-    
+
 
     return (
         <header className={s.header}>
@@ -24,7 +24,7 @@ const Header = (props) => {
                                      className={s.login}>
                                     <div/>
                                     <img className={s.userPhoto}
-                                         src={props.profile && props.profile.photos.small ? props.profile.photos.small : userPhoto}
+                                         src={props.owner && props.owner.photos.small ? props.owner.photos.small : userPhoto}
                                          alt=""/>
                                     <span className={s.name}> {props.login}</span>
                                 </div>

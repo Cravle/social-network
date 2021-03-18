@@ -41,7 +41,6 @@ const ProfileDataForm = ({outFromEditMode, saveProfile, profile}) => {
 
     const onSubmit = async (data) => {
 
-        console.log(data);
         saveProfile(data, profile.userId).then(() => {
             outFromEditMode();
 

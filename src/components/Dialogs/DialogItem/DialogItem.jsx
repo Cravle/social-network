@@ -8,7 +8,7 @@ const DialogItem = (props) => {
     return (
         <div>
             <NavLink className={s.dialog} activeClassName={s.active} to={path}>
-                <div className={s.wrapper}>
+                <div className={s.wrapper} onClick={props.afterSelectedChat}>
                     <img src={props.avaUrl} alt="" className={s.ava}/>
                     <div>
                         <div className={s.dialogName}>
