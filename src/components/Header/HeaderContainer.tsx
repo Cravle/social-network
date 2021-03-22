@@ -3,19 +3,25 @@ import Header from "./Header";
 import {connect} from "react-redux";
 import {deleteAuthLogin} from "../../Redux/auth-reducer";
 import {compose} from "redux";
+import {ProfileType} from "../../types/types";
 
-class HeaderContainer extends React.Component {
+type PropsType = {
+    deleteAuthLogin: () => void
 
-
-    render() {
-        return (
-            <Header {...this.props}/>
-        )
-    }
-
+    isAuth: boolean
+    login: string | null
+    owner: ProfileType
+    profile: ProfileType
 }
 
-const mapStateToProps = (state) => ({
+const HeaderContainer = (props: PropsType) => {
+    return (
+        <Header {...props}/>
+    )
+}
+
+
+const mapStateToProps = (state: any) => ({
     isAuth: state.auth.isAuth,
     login: state.auth.login,
     profile: state.profilePage.profile,

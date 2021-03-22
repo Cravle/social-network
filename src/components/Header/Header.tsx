@@ -2,10 +2,28 @@ import React, {useState} from 'react';
 import s from './Header.module.css';
 import {NavLink} from "react-router-dom";
 import userPhoto from "../../assets/img/user.jpg";
+import {ProfileType} from "../../types/types";
+import {deleteAuthLogin} from "../../Redux/auth-reducer";
 
+//
+// deleteAuthLogin: ƒ ()
+// isAuth: true
+// login: "Cravle"
+// owner: null
+// profile: null
+
+
+type PropsType = {
+    deleteAuthLogin: () => void
+    isAuth: boolean
+    login: string | null
+    owner: ProfileType
+    profile: ProfileType
+
+}
 
 //TODO Капча с докум
-const Header = (props) => {
+const Header = (props: PropsType) => {
     let [menu, setMenu] = useState(false);
 
 
@@ -31,7 +49,7 @@ const Header = (props) => {
                             </div>
                             {menu &&
                             <div className={s.menu}
-                                 onClick={(e) => e.target.tagName !== 'BUTTON' && setMenu(false)}>
+                                 onClick={(e: any) => e.target.tagName !== 'BUTTON' && setMenu(false)}>
                                 <div className={s.menuWrapper}>
                                     <button className={s.logout}
                                             onClick={props.deleteAuthLogin}>Log out

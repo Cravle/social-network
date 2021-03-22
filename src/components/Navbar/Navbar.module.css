@@ -45,6 +45,7 @@
 
 .friends a {
     display: grid;
+
 }
 
 .nav a.activeLink {
