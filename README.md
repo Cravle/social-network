@@ -25,8 +25,8 @@ password: free
 
 # What can be done
 
-- Error processing with async server side validation url with react-hook-form for editing __My
-  socials__
+- ~~Error processing with async server side validation url with react-hook-form for editing __My
+  socials__~~
 - Connect post with server
 - Sending message to real users with Socket.io
 - Typescript for all project
