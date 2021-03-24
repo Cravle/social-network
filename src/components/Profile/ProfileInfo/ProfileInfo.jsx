@@ -52,7 +52,7 @@ const ProfileData = ({status, updateUserStatus, profile, isOwner, goToEditMode})
 }
 
 
-const ProfileInfo = ({profile, status, updateUserStatus, saveProfile, ...props}) => {
+const ProfileInfo = ({profile, status, updateUserStatus, saveProfile, aboutMeError, ...props}) => {
     const [editMode, setEditMode] = useState(false);
 
     const goToEditMode = () => {
@@ -92,6 +92,7 @@ const ProfileInfo = ({profile, status, updateUserStatus, saveProfile, ...props})
                     <ProfileDataForm outFromEditMode={outFromEditMode}
                                      saveProfile={saveProfile}
                                      profile={profile}
+                                     aboutMeError={aboutMeError}
                     /> :
                     <ProfileData
                         isOwner={props.isOwner}

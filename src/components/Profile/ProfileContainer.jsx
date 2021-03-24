@@ -48,6 +48,7 @@ class ProfileContainer extends React.Component {
                      updateUserStatus={this.props.updateUserStatus}
                      savePhoto={this.props.savePhoto}
                      saveProfile={this.props.saveProfile}
+                     aboutMeError={this.props.aboutMeError}
             />
 
 
@@ -63,6 +64,7 @@ let mapStateToProps = (state) => ({
     status: state.profilePage.status,
     authorizedUserId: state.auth.userId,
     isAuth: state.auth.isAuth,
+    aboutMeError: state.profilePage.aboutMeError
 })
 
 export default compose(

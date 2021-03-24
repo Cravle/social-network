@@ -7,6 +7,7 @@ const ADD_POST = 'ADD-POST',
     SET_STATUS = 'SET-STATUS',
     DELETE_POST = 'DELETE-POST',
     TOGGLE_LIKE = 'TOGGLE-LIKE',
+    SET_ABOUT_ME_ERROR = 'SET-ABOUT-ME-ERROR',
     SAVE_PHOTO_SUCCESS = 'SAVE-PHOTO-SUCCESS';
 
 
@@ -20,6 +21,7 @@ let initialState = {
     profile: null as ProfileType | null,
     owner: null as any,
     status: "",
+    aboutMeError: ""
 };
 
 export type initialStateType = typeof initialState
@@ -85,6 +87,12 @@ const profileReducer = (state = initialState, action: any): initialStateType => 
                     }
                     return p;
                 })]
+            }
+        }
+        case SET_ABOUT_ME_ERROR: {
+            return {
+                ...state,
+                aboutMeError: action.error,
             }
         }
         default:
@@ -166,6 +174,16 @@ export const toggleLike = (id: number, likeOrUnlike: boolean): ToggleLikeActionT
     likeOrUnlike
 })
 
+type SetAboutMeError = {
+    type: typeof SET_ABOUT_ME_ERROR,
+    error: string;
+}
+
+export const setAboutMeError = (error: string): SetAboutMeError => ({
+    type: SET_ABOUT_ME_ERROR,
+    error
+})
+
 //THC
 export const getUserProfile = (userId: number, userOrOwner: boolean = false) => async (dispatch: any) => {
     let response = await profileAPI.getProfile(userId);
@@ -194,10 +212,16 @@ export const savePhoto = (file: any) => async (dispatch: any) => {
 
 export const saveProfile = (profile: any, id: number) => async (dispatch: any) => {
     let response = await profileAPI.saveProfile(profile);
+
     if (response.data.resultCode === 0) {
 
         dispatch(getUserProfile(id))
     }
+    if (response.data.resultCode === 1) {
+
+        return response.data.messages[0];
+    }
+    return ""
 }
 
 

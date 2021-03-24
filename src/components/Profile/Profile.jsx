@@ -14,6 +14,7 @@ const Profile = (props) => {
                          updateUserStatus={props.updateUserStatus}
                          savePhoto={props.savePhoto}
                          saveProfile={props.saveProfile}
+                         aboutMeError={props.aboutMeError}
             />
             <MyPostsContainer profile={props.profile}/>
         </div>

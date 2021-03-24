@@ -20,32 +20,34 @@ const InputBlock = ({
     )
 }
 
-const ProfileDataForm = ({outFromEditMode, saveProfile, profile}) => {
-
+const ProfileDataForm = ({outFromEditMode, saveProfile, profile, aboutMeError}) => {
     const {
         register,
-        errors,
         handleSubmit
     } = useForm({defaultValues: {...profile}},)
 
-    console.log(errors)
+    // const [submiting, setSubmiting] = React.useState(false)
+    const [serverErrors, setServerErrors] = React.useState('');
 
-    // const mySubmit = async (e) => {
-    //     e.preventDefault();
-    //     await onSubmit();
-    //
-    //
-    //     handleSubmit(() => {
-    //     });
-    // }
+    const
+        onSubmit = async (data) => {
+            const res = await saveProfile(data, profile.userId);
+            let str = res;
+            if (res === "") {
+                outFromEditMode();
+            } else {
+                const newstr = str.split(" ");
 
-    const onSubmit = async (data) => {
+                str = newstr[3];
 
-        saveProfile(data, profile.userId).then(() => {
-            outFromEditMode();
+                str = str.slice(11);
+                str = str.slice(0, str.length - 1)
+                setServerErrors(`${str} incorrect URL`);
 
-        })
-    };
+
+            }
+        }
+
     return (
 
         <form name='about' className={s.descriptionEdit} onSubmit={handleSubmit(onSubmit)}>
@@ -78,6 +80,7 @@ const ProfileDataForm = ({outFromEditMode, saveProfile, profile}) => {
 
             <div/>
             <div className={s.socialsInputs}>
+                {serverErrors && <span className={s.error}>{serverErrors}</span>}
 
                 <InputBlock labelName={'facebook'}
                             inputName={'contacts.facebook'}
